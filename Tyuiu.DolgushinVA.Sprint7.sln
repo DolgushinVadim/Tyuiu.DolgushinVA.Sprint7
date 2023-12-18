@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.DolgushinVA.Sprint7.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.DolgushinVA.Sprint7.Project.V12.Test", "Tyuiu.DolgushinVA.Sprint7.Project.V12.Test\Tyuiu.DolgushinVA.Sprint7.Project.V12.Test.csproj", "{EBD0D433-C774-4A86-AB6C-AF8FDF5067EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.DolgushinVA.Sprint7.Project.V12", "Tyuiu.DolgushinVA.Sprint7.Project.V12\Tyuiu.DolgushinVA.Sprint7.Project.V12.csproj", "{B8549FFA-05BB-4321-BC85-989B4500003B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{EBD0D433-C774-4A86-AB6C-AF8FDF5067EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBD0D433-C774-4A86-AB6C-AF8FDF5067EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBD0D433-C774-4A86-AB6C-AF8FDF5067EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8549FFA-05BB-4321-BC85-989B4500003B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8549FFA-05BB-4321-BC85-989B4500003B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8549FFA-05BB-4321-BC85-989B4500003B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8549FFA-05BB-4321-BC85-989B4500003B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8520B786-C3CC-45FF-8169-0645209F9A51} = {FB425D9D-2B4B-4F7B-8295-720734C380C0}
 		{EBD0D433-C774-4A86-AB6C-AF8FDF5067EF} = {FB425D9D-2B4B-4F7B-8295-720734C380C0}
+		{B8549FFA-05BB-4321-BC85-989B4500003B} = {FB425D9D-2B4B-4F7B-8295-720734C380C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1557AEA2-6186-4149-8698-4EE815B6A609}
