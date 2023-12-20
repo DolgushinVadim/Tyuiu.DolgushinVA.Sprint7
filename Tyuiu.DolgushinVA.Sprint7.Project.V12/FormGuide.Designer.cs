@@ -38,6 +38,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.MaximizeBox = false;
             this.Name = "FormGuide";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Руководство";
             this.ResumeLayout(false);
 
