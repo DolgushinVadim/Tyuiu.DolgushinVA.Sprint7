@@ -30,6 +30,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panelLeftM_DVA = new System.Windows.Forms.Panel();
             this.panelRightM_DVA = new System.Windows.Forms.Panel();
             this.panelDownM_DVA = new System.Windows.Forms.Panel();
@@ -448,6 +449,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.Controls.Add(this.panelDownM_DVA);
             this.Controls.Add(this.panelRightM_DVA);
             this.Controls.Add(this.panelLeftM_DVA);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip_DVA;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
