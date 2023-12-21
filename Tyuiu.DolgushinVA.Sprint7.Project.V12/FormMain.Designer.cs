@@ -38,7 +38,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
             this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
             this.groupBoxWorkwithData = new System.Windows.Forms.GroupBox();
-            this.comboBoxFilter_DVA = new System.Windows.Forms.ComboBox();
             this.comboBoxSort_DVA = new System.Windows.Forms.ComboBox();
             this.labelFilter_DVA = new System.Windows.Forms.Label();
             this.labelSort_DVA = new System.Windows.Forms.Label();
@@ -69,6 +68,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
             this.toolTipAdd_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDelete_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.textBoxFilter_DVA = new System.Windows.Forms.TextBox();
             this.panelMain_DVA.SuspendLayout();
             this.groupBoxWorkwithData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).BeginInit();
@@ -149,7 +149,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.groupBoxWorkwithData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxWorkwithData.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.groupBoxWorkwithData.Controls.Add(this.comboBoxFilter_DVA);
+            this.groupBoxWorkwithData.Controls.Add(this.textBoxFilter_DVA);
             this.groupBoxWorkwithData.Controls.Add(this.comboBoxSort_DVA);
             this.groupBoxWorkwithData.Controls.Add(this.labelFilter_DVA);
             this.groupBoxWorkwithData.Controls.Add(this.labelSort_DVA);
@@ -160,16 +160,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.groupBoxWorkwithData.TabIndex = 9;
             this.groupBoxWorkwithData.TabStop = false;
             this.groupBoxWorkwithData.Text = "Работа с данными";
-            // 
-            // comboBoxFilter_DVA
-            // 
-            this.comboBoxFilter_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxFilter_DVA.FormattingEnabled = true;
-            this.comboBoxFilter_DVA.Location = new System.Drawing.Point(11, 178);
-            this.comboBoxFilter_DVA.Name = "comboBoxFilter_DVA";
-            this.comboBoxFilter_DVA.Size = new System.Drawing.Size(229, 31);
-            this.comboBoxFilter_DVA.TabIndex = 3;
             // 
             // comboBoxSort_DVA
             // 
@@ -443,6 +433,15 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.openFileDialog_DVA.FileName = "openFileDialog_DVA";
             // 
+            // textBoxFilter_DVA
+            // 
+            this.textBoxFilter_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFilter_DVA.Location = new System.Drawing.Point(10, 176);
+            this.textBoxFilter_DVA.Name = "textBoxFilter_DVA";
+            this.textBoxFilter_DVA.Size = new System.Drawing.Size(230, 30);
+            this.textBoxFilter_DVA.TabIndex = 4;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -504,12 +503,12 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         private System.Windows.Forms.GroupBox groupBoxWorkwithData;
         private System.Windows.Forms.Label labelFilter_DVA;
         private System.Windows.Forms.Label labelSort_DVA;
-        private System.Windows.Forms.ComboBox comboBoxFilter_DVA;
         private System.Windows.Forms.ComboBox comboBoxSort_DVA;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.Button buttonSaveFile_DVA;
         private System.Windows.Forms.Button buttonOpenFile_DVA;
+        private System.Windows.Forms.TextBox textBoxFilter_DVA;
     }
 }
 
