@@ -35,14 +35,18 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelRightM_DVA = new System.Windows.Forms.Panel();
             this.panelDownM_DVA = new System.Windows.Forms.Panel();
             this.panelMain_DVA = new System.Windows.Forms.Panel();
+            this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
+            this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
             this.groupBoxWorkwithData = new System.Windows.Forms.GroupBox();
             this.comboBoxFilter_DVA = new System.Windows.Forms.ComboBox();
             this.comboBoxSort_DVA = new System.Windows.Forms.ComboBox();
             this.labelFilter_DVA = new System.Windows.Forms.Label();
             this.labelSort_DVA = new System.Windows.Forms.Label();
+            this.buttonDeleteRow_DVA = new System.Windows.Forms.Button();
+            this.buttonAddRow_DVA = new System.Windows.Forms.Button();
             this.labelSearch_DVA = new System.Windows.Forms.Label();
             this.textBoxSearch_DVA = new System.Windows.Forms.TextBox();
-            this.dataGridViewViewDataBase_DVA = new System.Windows.Forms.DataGridView();
+            this.dataGridViewOpenDataBase_DVA = new System.Windows.Forms.DataGridView();
             this.groupBoxStatistic_DVA = new System.Windows.Forms.GroupBox();
             this.labelMaxValue_DVA = new System.Windows.Forms.Label();
             this.labelMiddleValue_DVA = new System.Windows.Forms.Label();
@@ -65,13 +69,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
             this.toolTipAdd_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDelete_DVA = new System.Windows.Forms.ToolTip(this.components);
-            this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
-            this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
-            this.buttonDeleteRow_DVA = new System.Windows.Forms.Button();
-            this.buttonAddRow_DVA = new System.Windows.Forms.Button();
             this.panelMain_DVA.SuspendLayout();
             this.groupBoxWorkwithData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewViewDataBase_DVA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).BeginInit();
             this.groupBoxStatistic_DVA.SuspendLayout();
             this.menuStrip_DVA.SuspendLayout();
             this.SuspendLayout();
@@ -113,7 +113,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelMain_DVA.Controls.Add(this.buttonAddRow_DVA);
             this.panelMain_DVA.Controls.Add(this.labelSearch_DVA);
             this.panelMain_DVA.Controls.Add(this.textBoxSearch_DVA);
-            this.panelMain_DVA.Controls.Add(this.dataGridViewViewDataBase_DVA);
+            this.panelMain_DVA.Controls.Add(this.dataGridViewOpenDataBase_DVA);
             this.panelMain_DVA.Controls.Add(this.groupBoxStatistic_DVA);
             this.panelMain_DVA.Controls.Add(this.menuStrip_DVA);
             this.panelMain_DVA.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -121,6 +121,28 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelMain_DVA.Name = "panelMain_DVA";
             this.panelMain_DVA.Size = new System.Drawing.Size(1307, 632);
             this.panelMain_DVA.TabIndex = 3;
+            // 
+            // buttonSaveFile_DVA
+            // 
+            this.buttonSaveFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.database_save;
+            this.buttonSaveFile_DVA.Location = new System.Drawing.Point(1106, 554);
+            this.buttonSaveFile_DVA.Name = "buttonSaveFile_DVA";
+            this.buttonSaveFile_DVA.Size = new System.Drawing.Size(174, 65);
+            this.buttonSaveFile_DVA.TabIndex = 11;
+            this.buttonSaveFile_DVA.UseVisualStyleBackColor = true;
+            this.buttonSaveFile_DVA.Click += new System.EventHandler(this.buttonSaveFile_DVA_Click);
+            // 
+            // buttonOpenFile_DVA
+            // 
+            this.buttonOpenFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpenFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.folder_database;
+            this.buttonOpenFile_DVA.Location = new System.Drawing.Point(1106, 474);
+            this.buttonOpenFile_DVA.Name = "buttonOpenFile_DVA";
+            this.buttonOpenFile_DVA.Size = new System.Drawing.Size(174, 65);
+            this.buttonOpenFile_DVA.TabIndex = 10;
+            this.buttonOpenFile_DVA.UseVisualStyleBackColor = true;
+            this.buttonOpenFile_DVA.Click += new System.EventHandler(this.buttonOpenFile_DVA_Click);
             // 
             // groupBoxWorkwithData
             // 
@@ -183,6 +205,27 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.labelSort_DVA.TabIndex = 0;
             this.labelSort_DVA.Text = "Сортировка";
             // 
+            // buttonDeleteRow_DVA
+            // 
+            this.buttonDeleteRow_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeleteRow_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.page_delete;
+            this.buttonDeleteRow_DVA.Location = new System.Drawing.Point(1106, 392);
+            this.buttonDeleteRow_DVA.Name = "buttonDeleteRow_DVA";
+            this.buttonDeleteRow_DVA.Size = new System.Drawing.Size(174, 65);
+            this.buttonDeleteRow_DVA.TabIndex = 7;
+            this.buttonDeleteRow_DVA.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddRow_DVA
+            // 
+            this.buttonAddRow_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddRow_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.page_add;
+            this.buttonAddRow_DVA.Location = new System.Drawing.Point(1106, 312);
+            this.buttonAddRow_DVA.Name = "buttonAddRow_DVA";
+            this.buttonAddRow_DVA.Size = new System.Drawing.Size(174, 65);
+            this.buttonAddRow_DVA.TabIndex = 6;
+            this.buttonAddRow_DVA.UseVisualStyleBackColor = true;
+            this.buttonAddRow_DVA.Click += new System.EventHandler(this.buttonAddRow_DVA_Click);
+            // 
             // labelSearch_DVA
             // 
             this.labelSearch_DVA.AutoSize = true;
@@ -203,20 +246,20 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxSearch_DVA.Size = new System.Drawing.Size(966, 27);
             this.textBoxSearch_DVA.TabIndex = 4;
             // 
-            // dataGridViewViewDataBase_DVA
+            // dataGridViewOpenDataBase_DVA
             // 
-            this.dataGridViewViewDataBase_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewOpenDataBase_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewViewDataBase_DVA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewViewDataBase_DVA.ColumnHeadersVisible = false;
-            this.dataGridViewViewDataBase_DVA.Location = new System.Drawing.Point(6, 68);
-            this.dataGridViewViewDataBase_DVA.Name = "dataGridViewViewDataBase_DVA";
-            this.dataGridViewViewDataBase_DVA.RowHeadersVisible = false;
-            this.dataGridViewViewDataBase_DVA.RowHeadersWidth = 51;
-            this.dataGridViewViewDataBase_DVA.RowTemplate.Height = 24;
-            this.dataGridViewViewDataBase_DVA.Size = new System.Drawing.Size(1043, 446);
-            this.dataGridViewViewDataBase_DVA.TabIndex = 1;
+            this.dataGridViewOpenDataBase_DVA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOpenDataBase_DVA.ColumnHeadersVisible = false;
+            this.dataGridViewOpenDataBase_DVA.Location = new System.Drawing.Point(6, 68);
+            this.dataGridViewOpenDataBase_DVA.Name = "dataGridViewOpenDataBase_DVA";
+            this.dataGridViewOpenDataBase_DVA.RowHeadersVisible = false;
+            this.dataGridViewOpenDataBase_DVA.RowHeadersWidth = 51;
+            this.dataGridViewOpenDataBase_DVA.RowTemplate.Height = 24;
+            this.dataGridViewOpenDataBase_DVA.Size = new System.Drawing.Size(1043, 446);
+            this.dataGridViewOpenDataBase_DVA.TabIndex = 1;
             // 
             // groupBoxStatistic_DVA
             // 
@@ -400,46 +443,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.openFileDialog_DVA.FileName = "openFileDialog_DVA";
             // 
-            // buttonSaveFile_DVA
-            // 
-            this.buttonSaveFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSaveFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.database_save;
-            this.buttonSaveFile_DVA.Location = new System.Drawing.Point(1106, 554);
-            this.buttonSaveFile_DVA.Name = "buttonSaveFile_DVA";
-            this.buttonSaveFile_DVA.Size = new System.Drawing.Size(174, 65);
-            this.buttonSaveFile_DVA.TabIndex = 11;
-            this.buttonSaveFile_DVA.UseVisualStyleBackColor = true;
-            // 
-            // buttonOpenFile_DVA
-            // 
-            this.buttonOpenFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOpenFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.folder_database;
-            this.buttonOpenFile_DVA.Location = new System.Drawing.Point(1106, 474);
-            this.buttonOpenFile_DVA.Name = "buttonOpenFile_DVA";
-            this.buttonOpenFile_DVA.Size = new System.Drawing.Size(174, 65);
-            this.buttonOpenFile_DVA.TabIndex = 10;
-            this.buttonOpenFile_DVA.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeleteRow_DVA
-            // 
-            this.buttonDeleteRow_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeleteRow_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.page_delete;
-            this.buttonDeleteRow_DVA.Location = new System.Drawing.Point(1106, 392);
-            this.buttonDeleteRow_DVA.Name = "buttonDeleteRow_DVA";
-            this.buttonDeleteRow_DVA.Size = new System.Drawing.Size(174, 65);
-            this.buttonDeleteRow_DVA.TabIndex = 7;
-            this.buttonDeleteRow_DVA.UseVisualStyleBackColor = true;
-            // 
-            // buttonAddRow_DVA
-            // 
-            this.buttonAddRow_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddRow_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.page_add;
-            this.buttonAddRow_DVA.Location = new System.Drawing.Point(1106, 312);
-            this.buttonAddRow_DVA.Name = "buttonAddRow_DVA";
-            this.buttonAddRow_DVA.Size = new System.Drawing.Size(174, 65);
-            this.buttonAddRow_DVA.TabIndex = 6;
-            this.buttonAddRow_DVA.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -458,7 +461,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelMain_DVA.PerformLayout();
             this.groupBoxWorkwithData.ResumeLayout(false);
             this.groupBoxWorkwithData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewViewDataBase_DVA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).EndInit();
             this.groupBoxStatistic_DVA.ResumeLayout(false);
             this.groupBoxStatistic_DVA.PerformLayout();
             this.menuStrip_DVA.ResumeLayout(false);
@@ -473,7 +476,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         private System.Windows.Forms.Panel panelRightM_DVA;
         private System.Windows.Forms.Panel panelDownM_DVA;
         private System.Windows.Forms.Panel panelMain_DVA;
-        private System.Windows.Forms.DataGridView dataGridViewViewDataBase_DVA;
+        private System.Windows.Forms.DataGridView dataGridViewOpenDataBase_DVA;
         private System.Windows.Forms.GroupBox groupBoxStatistic_DVA;
         private System.Windows.Forms.Label labelSearch_DVA;
         private System.Windows.Forms.TextBox textBoxSearch_DVA;

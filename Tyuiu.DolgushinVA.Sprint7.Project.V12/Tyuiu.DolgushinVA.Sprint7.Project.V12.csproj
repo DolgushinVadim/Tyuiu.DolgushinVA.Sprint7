@@ -126,5 +126,11 @@
   <ItemGroup>
     <None Include="Resources\chart_curve_delete.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tyuiu.DolgushinVA.Sprint7.Project.V12.Lib\Tyuiu.DolgushinVA.Sprint7.Project.V12.Lib.csproj">
+      <Project>{8520b786-c3cc-45ff-8169-0645209f9a51}</Project>
+      <Name>Tyuiu.DolgushinVA.Sprint7.Project.V12.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

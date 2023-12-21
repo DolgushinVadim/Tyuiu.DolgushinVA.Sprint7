@@ -29,20 +29,20 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelLeftC_DVA = new System.Windows.Forms.Panel();
             this.panelRightC_DVA = new System.Windows.Forms.Panel();
             this.panelDownC_DVA = new System.Windows.Forms.Panel();
             this.panelCharts_DVA = new System.Windows.Forms.Panel();
             this.groupBoxActions_DVA = new System.Windows.Forms.GroupBox();
-            this.chartFuction_DVA = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dataGridViewChart_DVA = new System.Windows.Forms.DataGridView();
             this.buttonDeleteChart_DVA = new System.Windows.Forms.Button();
             this.buttonAddChart_DVA = new System.Windows.Forms.Button();
             this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
             this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
+            this.chartFuction_DVA = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dataGridViewOpenDataBase_DVA = new System.Windows.Forms.DataGridView();
             this.menuStrip_DVA = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +55,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelCharts_DVA.SuspendLayout();
             this.groupBoxActions_DVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartFuction_DVA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChart_DVA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).BeginInit();
             this.menuStrip_DVA.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +91,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelCharts_DVA.BackColor = System.Drawing.SystemColors.Control;
             this.panelCharts_DVA.Controls.Add(this.groupBoxActions_DVA);
             this.panelCharts_DVA.Controls.Add(this.chartFuction_DVA);
-            this.panelCharts_DVA.Controls.Add(this.dataGridViewChart_DVA);
+            this.panelCharts_DVA.Controls.Add(this.dataGridViewOpenDataBase_DVA);
             this.panelCharts_DVA.Controls.Add(this.menuStrip_DVA);
             this.panelCharts_DVA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCharts_DVA.Location = new System.Drawing.Point(25, 0);
@@ -115,39 +115,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.groupBoxActions_DVA.TabIndex = 2;
             this.groupBoxActions_DVA.TabStop = false;
             this.groupBoxActions_DVA.Text = "Работа с графиком";
-            // 
-            // chartFuction_DVA
-            // 
-            this.chartFuction_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.chartFuction_DVA.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartFuction_DVA.Legends.Add(legend2);
-            this.chartFuction_DVA.Location = new System.Drawing.Point(645, 34);
-            this.chartFuction_DVA.Name = "chartFuction_DVA";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartFuction_DVA.Series.Add(series2);
-            this.chartFuction_DVA.Size = new System.Drawing.Size(656, 452);
-            this.chartFuction_DVA.TabIndex = 1;
-            this.chartFuction_DVA.Text = "chart1";
-            // 
-            // dataGridViewChart_DVA
-            // 
-            this.dataGridViewChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridViewChart_DVA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewChart_DVA.Location = new System.Drawing.Point(6, 34);
-            this.dataGridViewChart_DVA.Name = "dataGridViewChart_DVA";
-            this.dataGridViewChart_DVA.RowHeadersWidth = 51;
-            this.dataGridViewChart_DVA.RowTemplate.Height = 24;
-            this.dataGridViewChart_DVA.Size = new System.Drawing.Size(633, 452);
-            this.dataGridViewChart_DVA.TabIndex = 0;
             // 
             // buttonDeleteChart_DVA
             // 
@@ -189,6 +156,39 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonSaveFile_DVA.TabIndex = 0;
             this.buttonSaveFile_DVA.UseVisualStyleBackColor = true;
             // 
+            // chartFuction_DVA
+            // 
+            this.chartFuction_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Name = "ChartArea1";
+            this.chartFuction_DVA.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartFuction_DVA.Legends.Add(legend1);
+            this.chartFuction_DVA.Location = new System.Drawing.Point(645, 34);
+            this.chartFuction_DVA.Name = "chartFuction_DVA";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartFuction_DVA.Series.Add(series1);
+            this.chartFuction_DVA.Size = new System.Drawing.Size(656, 452);
+            this.chartFuction_DVA.TabIndex = 1;
+            this.chartFuction_DVA.Text = "chart1";
+            // 
+            // dataGridViewOpenDataBase_DVA
+            // 
+            this.dataGridViewOpenDataBase_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewOpenDataBase_DVA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOpenDataBase_DVA.Location = new System.Drawing.Point(6, 34);
+            this.dataGridViewOpenDataBase_DVA.Name = "dataGridViewOpenDataBase_DVA";
+            this.dataGridViewOpenDataBase_DVA.RowHeadersWidth = 51;
+            this.dataGridViewOpenDataBase_DVA.RowTemplate.Height = 24;
+            this.dataGridViewOpenDataBase_DVA.Size = new System.Drawing.Size(633, 452);
+            this.dataGridViewOpenDataBase_DVA.TabIndex = 0;
+            // 
             // menuStrip_DVA
             // 
             this.menuStrip_DVA.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -217,13 +217,13 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
             this.открытьToolStripMenuItem.Text = "Открыть";
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // главнаяСтраницаToolStripMenuItem
@@ -265,7 +265,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelCharts_DVA.PerformLayout();
             this.groupBoxActions_DVA.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartFuction_DVA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChart_DVA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).EndInit();
             this.menuStrip_DVA.ResumeLayout(false);
             this.menuStrip_DVA.PerformLayout();
             this.ResumeLayout(false);
@@ -279,7 +279,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         private System.Windows.Forms.Panel panelDownC_DVA;
         private System.Windows.Forms.Panel panelCharts_DVA;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartFuction_DVA;
-        private System.Windows.Forms.DataGridView dataGridViewChart_DVA;
+        private System.Windows.Forms.DataGridView dataGridViewOpenDataBase_DVA;
         private System.Windows.Forms.GroupBox groupBoxActions_DVA;
         private System.Windows.Forms.Button buttonOpenFile_DVA;
         private System.Windows.Forms.Button buttonSaveFile_DVA;
