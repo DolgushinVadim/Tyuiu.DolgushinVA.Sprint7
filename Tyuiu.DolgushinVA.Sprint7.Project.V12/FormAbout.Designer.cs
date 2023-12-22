@@ -51,6 +51,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonOK_DVA.TabIndex = 1;
             this.buttonOK_DVA.Text = "OK";
             this.buttonOK_DVA.UseVisualStyleBackColor = true;
+            this.buttonOK_DVA.Click += new System.EventHandler(this.buttonOK_DVA_Click);
             // 
             // FormAbout
             // 

@@ -165,6 +165,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.textBoxFilter_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFilter_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxFilter_DVA.Location = new System.Drawing.Point(10, 176);
             this.textBoxFilter_DVA.Name = "textBoxFilter_DVA";
             this.textBoxFilter_DVA.Size = new System.Drawing.Size(230, 30);
@@ -176,6 +177,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.comboBoxSort_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSort_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxSort_DVA.FormattingEnabled = true;
             this.comboBoxSort_DVA.Items.AddRange(new object[] {
             "Изначальное состояние",
@@ -357,6 +359,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // textBoxMaxValue_DVA
             // 
             this.textBoxMaxValue_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxMaxValue_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxMaxValue_DVA.Location = new System.Drawing.Point(819, 60);
             this.textBoxMaxValue_DVA.Name = "textBoxMaxValue_DVA";
             this.textBoxMaxValue_DVA.Size = new System.Drawing.Size(208, 30);
@@ -365,6 +368,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // textBoxMiddleValue_DVA
             // 
             this.textBoxMiddleValue_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxMiddleValue_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxMiddleValue_DVA.Location = new System.Drawing.Point(598, 60);
             this.textBoxMiddleValue_DVA.Name = "textBoxMiddleValue_DVA";
             this.textBoxMiddleValue_DVA.Size = new System.Drawing.Size(172, 30);
@@ -373,6 +377,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // textBoxMinValue_DVA
             // 
             this.textBoxMinValue_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxMinValue_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxMinValue_DVA.Location = new System.Drawing.Point(345, 60);
             this.textBoxMinValue_DVA.Name = "textBoxMinValue_DVA";
             this.textBoxMinValue_DVA.Size = new System.Drawing.Size(203, 30);
@@ -381,6 +386,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // textBoxSum_DVA
             // 
             this.textBoxSum_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxSum_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxSum_DVA.Location = new System.Drawing.Point(175, 60);
             this.textBoxSum_DVA.Name = "textBoxSum_DVA";
             this.textBoxSum_DVA.Size = new System.Drawing.Size(115, 30);
@@ -389,6 +395,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // textBoxQuantity_DVA
             // 
             this.textBoxQuantity_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxQuantity_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxQuantity_DVA.Location = new System.Drawing.Point(6, 60);
             this.textBoxQuantity_DVA.Name = "textBoxQuantity_DVA";
             this.textBoxQuantity_DVA.Size = new System.Drawing.Size(121, 30);
@@ -422,14 +429,14 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemOpenFile_DVA_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemSaveFile_URI_Click);
             // 

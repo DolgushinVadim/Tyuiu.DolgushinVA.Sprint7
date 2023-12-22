@@ -26,40 +26,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         static string[,] matrixSort;
         static string[,] matrixFilter;
         DataService ds = new DataService();
-        private void buttonAddRow_DVA_Click(object sender, EventArgs e)
-        {
-            {
-                try
-                {
-                    dataGridViewOpenDataBase_DVA.Rows.Add();
-                }
-                catch
-                {
-                    MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-        private void buttonDeleteRow_DVA_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewOpenDataBase_DVA.RowCount != 0)
-            {
-                int del = 0;
-                var result = MessageBox.Show($"{"Удалить данную строку?\rЕё невозможно будет восстановить"}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    del = 1;
-                }
-                if (del == 1)
-                {
-                    int a = dataGridViewOpenDataBase_DVA.CurrentCell.RowIndex;
-                    dataGridViewOpenDataBase_DVA.Rows.RemoveAt(a);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void buttonOpenFile_DVA_Click(object sender, EventArgs e)
         {
             try
@@ -131,6 +97,40 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             catch
             {
                 MessageBox.Show("Файл не сохранен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void buttonAddRow_DVA_Click(object sender, EventArgs e)
+        {
+            {
+                try
+                {
+                    dataGridViewOpenDataBase_DVA.Rows.Add();
+                }
+                catch
+                {
+                    MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void buttonDeleteRow_DVA_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewOpenDataBase_DVA.RowCount != 0)
+            {
+                int del = 0;
+                var result = MessageBox.Show($"{"Удалить данную строку?\rЕё невозможно будет восстановить"}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    del = 1;
+                }
+                if (del == 1)
+                {
+                    int a = dataGridViewOpenDataBase_DVA.CurrentCell.RowIndex;
+                    dataGridViewOpenDataBase_DVA.Rows.RemoveAt(a);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void textBoxSearch_DVA_KeyDown(object sender, KeyEventArgs e)
@@ -441,7 +441,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 MessageBox.Show("Произошла ошибка при загрузке файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void ToolStripMenuItemSaveFile_URI_Click(object sender, EventArgs e)
         {
             try

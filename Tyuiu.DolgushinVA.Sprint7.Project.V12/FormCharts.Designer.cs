@@ -29,9 +29,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelLeftC_DVA = new System.Windows.Forms.Panel();
             this.panelRightC_DVA = new System.Windows.Forms.Panel();
             this.panelDownC_DVA = new System.Windows.Forms.Panel();
@@ -106,8 +106,8 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.groupBoxActions_DVA.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.groupBoxActions_DVA.Controls.Add(this.buttonDeleteChart_DVA);
             this.groupBoxActions_DVA.Controls.Add(this.buttonAddChart_DVA);
-            this.groupBoxActions_DVA.Controls.Add(this.buttonOpenFile_DVA);
             this.groupBoxActions_DVA.Controls.Add(this.buttonSaveFile_DVA);
+            this.groupBoxActions_DVA.Controls.Add(this.buttonOpenFile_DVA);
             this.groupBoxActions_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
             this.groupBoxActions_DVA.Location = new System.Drawing.Point(6, 492);
             this.groupBoxActions_DVA.Name = "groupBoxActions_DVA";
@@ -118,9 +118,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             // buttonDeleteChart_DVA
             // 
-            this.buttonDeleteChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonDeleteChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDeleteChart_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.chart_curve_delete;
-            this.buttonDeleteChart_DVA.Location = new System.Drawing.Point(248, 39);
+            this.buttonDeleteChart_DVA.Location = new System.Drawing.Point(1097, 39);
             this.buttonDeleteChart_DVA.Name = "buttonDeleteChart_DVA";
             this.buttonDeleteChart_DVA.Size = new System.Drawing.Size(175, 85);
             this.buttonDeleteChart_DVA.TabIndex = 3;
@@ -128,9 +128,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             // buttonAddChart_DVA
             // 
-            this.buttonAddChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAddChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddChart_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.chart_curve_add;
-            this.buttonAddChart_DVA.Location = new System.Drawing.Point(22, 39);
+            this.buttonAddChart_DVA.Location = new System.Drawing.Point(879, 39);
             this.buttonAddChart_DVA.Name = "buttonAddChart_DVA";
             this.buttonAddChart_DVA.Size = new System.Drawing.Size(175, 85);
             this.buttonAddChart_DVA.TabIndex = 2;
@@ -138,19 +138,20 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             // buttonOpenFile_DVA
             // 
-            this.buttonOpenFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpenFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonOpenFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.folder_database;
-            this.buttonOpenFile_DVA.Location = new System.Drawing.Point(867, 29);
+            this.buttonOpenFile_DVA.Location = new System.Drawing.Point(19, 39);
             this.buttonOpenFile_DVA.Name = "buttonOpenFile_DVA";
             this.buttonOpenFile_DVA.Size = new System.Drawing.Size(175, 85);
             this.buttonOpenFile_DVA.TabIndex = 1;
             this.buttonOpenFile_DVA.UseVisualStyleBackColor = true;
+            this.buttonOpenFile_DVA.Click += new System.EventHandler(this.buttonOpenFile_DVA_Click);
             // 
             // buttonSaveFile_DVA
             // 
-            this.buttonSaveFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSaveFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.database_save;
-            this.buttonSaveFile_DVA.Location = new System.Drawing.Point(1096, 29);
+            this.buttonSaveFile_DVA.Location = new System.Drawing.Point(237, 39);
             this.buttonSaveFile_DVA.Name = "buttonSaveFile_DVA";
             this.buttonSaveFile_DVA.Size = new System.Drawing.Size(175, 85);
             this.buttonSaveFile_DVA.TabIndex = 0;
@@ -160,19 +161,19 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.chartFuction_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chartFuction_DVA.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartFuction_DVA.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartFuction_DVA.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartFuction_DVA.Legends.Add(legend2);
             this.chartFuction_DVA.Location = new System.Drawing.Point(645, 34);
             this.chartFuction_DVA.Name = "chartFuction_DVA";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartFuction_DVA.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartFuction_DVA.Series.Add(series2);
             this.chartFuction_DVA.Size = new System.Drawing.Size(656, 452);
             this.chartFuction_DVA.TabIndex = 1;
             this.chartFuction_DVA.Text = "chart1";
