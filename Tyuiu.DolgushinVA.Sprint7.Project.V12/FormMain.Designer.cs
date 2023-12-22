@@ -38,6 +38,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
             this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
             this.groupBoxWorkwithData = new System.Windows.Forms.GroupBox();
+            this.textBoxFilter_DVA = new System.Windows.Forms.TextBox();
             this.comboBoxSort_DVA = new System.Windows.Forms.ComboBox();
             this.labelFilter_DVA = new System.Windows.Forms.Label();
             this.labelSort_DVA = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
             this.toolTipAdd_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDelete_DVA = new System.Windows.Forms.ToolTip(this.components);
-            this.textBoxFilter_DVA = new System.Windows.Forms.TextBox();
             this.panelMain_DVA.SuspendLayout();
             this.groupBoxWorkwithData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).BeginInit();
@@ -161,15 +161,32 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.groupBoxWorkwithData.TabStop = false;
             this.groupBoxWorkwithData.Text = "Работа с данными";
             // 
+            // textBoxFilter_DVA
+            // 
+            this.textBoxFilter_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFilter_DVA.Location = new System.Drawing.Point(10, 176);
+            this.textBoxFilter_DVA.Name = "textBoxFilter_DVA";
+            this.textBoxFilter_DVA.Size = new System.Drawing.Size(230, 30);
+            this.textBoxFilter_DVA.TabIndex = 4;
+            this.textBoxFilter_DVA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxFilter_DVA_KeyDown);
+            this.textBoxFilter_DVA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxFilter_DVA_KeyUp);
+            // 
             // comboBoxSort_DVA
             // 
             this.comboBoxSort_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxSort_DVA.FormattingEnabled = true;
+            this.comboBoxSort_DVA.Items.AddRange(new object[] {
+            "Изначальное состояние",
+            "По возрастанию",
+            "По убыванию"});
             this.comboBoxSort_DVA.Location = new System.Drawing.Point(11, 82);
             this.comboBoxSort_DVA.Name = "comboBoxSort_DVA";
             this.comboBoxSort_DVA.Size = new System.Drawing.Size(229, 31);
             this.comboBoxSort_DVA.TabIndex = 2;
+            this.comboBoxSort_DVA.SelectedIndexChanged += new System.EventHandler(this.comboBoxSort_DVA_SelectedIndexChanged);
+            this.comboBoxSort_DVA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxSort_DVA_KeyDown);
             // 
             // labelFilter_DVA
             // 
@@ -204,6 +221,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonDeleteRow_DVA.Size = new System.Drawing.Size(174, 65);
             this.buttonDeleteRow_DVA.TabIndex = 7;
             this.buttonDeleteRow_DVA.UseVisualStyleBackColor = true;
+            this.buttonDeleteRow_DVA.Click += new System.EventHandler(this.buttonDeleteRow_DVA_Click);
             // 
             // buttonAddRow_DVA
             // 
@@ -235,6 +253,8 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxSearch_DVA.Name = "textBoxSearch_DVA";
             this.textBoxSearch_DVA.Size = new System.Drawing.Size(966, 27);
             this.textBoxSearch_DVA.TabIndex = 4;
+            this.textBoxSearch_DVA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_DVA_KeyDown);
+            this.textBoxSearch_DVA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_DVA_KeyUp);
             // 
             // dataGridViewOpenDataBase_DVA
             // 
@@ -402,45 +422,41 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
             this.открытьToolStripMenuItem.Text = "Открыть";
+            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemOpenFile_DVA_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemSaveFile_URI_Click);
             // 
             // графикиToolStripMenuItem
             // 
             this.графикиToolStripMenuItem.Name = "графикиToolStripMenuItem";
             this.графикиToolStripMenuItem.Size = new System.Drawing.Size(91, 27);
             this.графикиToolStripMenuItem.Text = "Графики";
+            this.графикиToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemCharts_DVA_Click);
             // 
             // мануалToolStripMenuItem
             // 
             this.мануалToolStripMenuItem.Name = "мануалToolStripMenuItem";
             this.мануалToolStripMenuItem.Size = new System.Drawing.Size(125, 27);
             this.мануалToolStripMenuItem.Text = "Руководство";
+            this.мануалToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemGuide_DVA_Click);
             // 
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(133, 27);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItemAbout_DVA_Click);
             // 
             // openFileDialog_DVA
             // 
             this.openFileDialog_DVA.FileName = "openFileDialog_DVA";
-            // 
-            // textBoxFilter_DVA
-            // 
-            this.textBoxFilter_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFilter_DVA.Location = new System.Drawing.Point(10, 176);
-            this.textBoxFilter_DVA.Name = "textBoxFilter_DVA";
-            this.textBoxFilter_DVA.Size = new System.Drawing.Size(230, 30);
-            this.textBoxFilter_DVA.TabIndex = 4;
             // 
             // FormMain
             // 

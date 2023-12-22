@@ -72,8 +72,8 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                     matrix = ds.LoadFromDataFile(openFile);
                     rows = matrix.GetLength(0);
                     columns = matrix.GetLength(1);
-                    dataGridViewOpenDataBase_DVA.RowCount = rows;
-                    dataGridViewOpenDataBase_DVA.ColumnCount = columns;
+                    dataGridViewOpenDataBase_DVA.RowCount = rows + 1;
+                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 1;
 
                     for (int i = 0; i < rows; i++)
                     {
@@ -223,17 +223,16 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 }
             }
         }
-        private void textBoxSort_DVA_KeyDown(object sender, KeyEventArgs e)
+        private void comboBoxSort_DVA_KeyDown(object sender, KeyEventArgs e)
         {
             if (dataGridViewOpenDataBase_DVA.RowCount != 0)
             {
                 matrixSort = new string[dataGridViewOpenDataBase_DVA.RowCount, dataGridViewOpenDataBase_DVA.ColumnCount];
-                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount; i++)
+                for (int i = 0; i <= dataGridViewOpenDataBase_DVA.RowCount; i++)
                 {
-                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount; j++)
+                    for (int j = 0; j <= dataGridViewOpenDataBase_DVA.ColumnCount; j++)
                     {
                         matrixSort[i, j] = Convert.ToString(dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value);
-                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
                     }
                 }
             }
@@ -244,48 +243,66 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         }
         private void comboBoxSort_DVA_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxSort_DVA.SelectedItem != null)
+            if (comboBoxSort_DVA.SelectedItem != null && comboBoxSort_DVA.SelectedItem.ToString() != "Изначальное состояние")
             {
                 int columnIndex = -1;
-                foreach (DataGridViewColumn column in dataGridViewOpenDataBase_DVA.Columns)
+                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount; i++)
                 {
-                    if (column.Selected)
+                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount; j++)
                     {
-                        columnIndex = column.Index;
+                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected)
+                        {
+                            columnIndex = j;
+                            break;
+                        }
+                    }
+
+                    if (columnIndex > -1)
+                    {
                         break;
                     }
                 }
-                if (columnIndex >= 0)
-                {
-                    bool canSort = true;
-                    foreach (DataGridViewRow row in dataGridViewOpenDataBase_DVA.Rows)
-                    {
-                        int cellValue;
-                        if (row.Cells[columnIndex].Value != null && int.TryParse(row.Cells[columnIndex].Value.ToString(), out cellValue))
-                        {
-                            row.Cells[columnIndex].Value = cellValue;
-                        }
-                        else
-                        {
-                            row.Cells[columnIndex].Value = 0;
-                            canSort = false;
-                        }
-                    }
-                    if (canSort)
-                    {
-                        DataGridViewColumn column = dataGridViewOpenDataBase_DVA.Columns[columnIndex];
-                        string selectedItem = comboBoxSort_DVA.SelectedItem.ToString();
 
-                        if (selectedItem == "По возрастанию")
-                            dataGridViewOpenDataBase_DVA.Sort(column, ListSortDirection.Ascending);
-                        else if (selectedItem == "По убыванию")
-                            dataGridViewOpenDataBase_DVA.Sort(column, ListSortDirection.Descending);
+                if (columnIndex > -1)
+                {
+                    DataGridViewRow row = dataGridViewOpenDataBase_DVA.Rows[0];
+                    dataGridViewOpenDataBase_DVA.Rows.Remove(row);
+                    DataGridViewColumn column = dataGridViewOpenDataBase_DVA.Columns[columnIndex];
+                    string selectedItem = comboBoxSort_DVA.SelectedItem.ToString();
+
+                    if (selectedItem == "По возрастанию")
+                    {
+                        dataGridViewOpenDataBase_DVA.Sort(column, ListSortDirection.Ascending);
+                        dataGridViewOpenDataBase_DVA.Rows.Insert(0, row);
+
+                        for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount ; i++)
+                        {
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value == null)
+                            {
+                                dataGridViewOpenDataBase_DVA.Rows[i].Visible = false;
+                            }
+                        }
                     }
-                    //else MessageBox.Show("Невозможно выполнить сортировку");
+
+                    if (selectedItem == "По убыванию")
+                    {
+                        dataGridViewOpenDataBase_DVA.Sort(column, ListSortDirection.Descending);
+                        dataGridViewOpenDataBase_DVA.Rows.Insert(0, row);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount; i++)
+                {
+                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount; j++)
+                    {
+                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value = matrixSort[i, j];
+                    }
                 }
             }
         }
-        private void textBoxFilter_DVA_KeyDoWn(object sender, KeyEventArgs e)
+        private void textBoxFilter_DVA_KeyDown(object sender, KeyEventArgs e)
         {
             if (dataGridViewOpenDataBase_DVA.RowCount != 0)
             {
@@ -337,13 +354,15 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 {
                     for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                     {
-                        string elmnt = dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Value.ToString().ToLower();
-                        if (elmnt.StartsWith(dataGridViewOpenDataBase_DVA.Text.ToLower()))
+                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Value != null)
                         {
-                            dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Selected = true;
+                            string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Value.ToString().ToLower();
+                            if (element.StartsWith(textBoxFilter_DVA.Text.ToLower()))
+                            {
+                                dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Selected = true;
+                            }
                         }
                     }
-
                     for (int r = 1; r < dataGridViewOpenDataBase_DVA.RowCount - 1; r++)
                     {
                         if (dataGridViewOpenDataBase_DVA.Rows[r].Cells[filter].Selected == true)
@@ -367,6 +386,98 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 {
                     MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+        private void toolStripMenuItemAbout_DVA_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
+        }
+        private void ToolStripMenuItemCharts_DVA_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormCharts formCharts = new FormCharts();
+            formCharts.Show();
+
+        }
+        private void ToolStripMenuItemGuide_DVA_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormGuide formGuide = new FormGuide();
+            formGuide.ShowDialog();
+        }
+        private void ToolStripMenuItemOpenFile_DVA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openFileDialog_DVA.ShowDialog();
+                openFile = openFileDialog_DVA.FileName;
+
+                if (openFile != "")
+                {
+                    matrix = ds.LoadFromDataFile(openFile);
+                    rows = matrix.GetLength(0);
+                    columns = matrix.GetLength(1);
+                    dataGridViewOpenDataBase_DVA.RowCount = rows + 1;
+                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 1;
+
+                    for (int i = 0; i < rows; i++)
+                    {
+                        for (int j = 0; j < columns; j++)
+                        {
+                            dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value = matrix[i, j];
+                            dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
+                        }
+                    }
+                    dataGridViewOpenDataBase_DVA.AutoResizeColumns();
+                }
+                else
+                {
+                    MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка при загрузке файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ToolStripMenuItemSaveFile_URI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                saveFileDialog_DVA.FileName = ".csv";
+                saveFileDialog_DVA.InitialDirectory = @":C";
+                if (saveFileDialog_DVA.ShowDialog() == DialogResult.OK)
+                {
+                    string savepath = saveFileDialog_DVA.FileName;
+                    if (File.Exists(savepath))
+                    {
+                        File.Delete(savepath);
+                    }
+                    int rows = dataGridViewOpenDataBase_DVA.RowCount;
+                    int columns = dataGridViewOpenDataBase_DVA.ColumnCount;
+                    StringBuilder strBuilder = new StringBuilder();
+                    for (int i = 0; i < rows; i++)
+                    {
+                        for (int j = 0; j < columns; j++)
+                        {
+                            strBuilder.Append(dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value);
+
+                            if (j != columns - 1)
+                            {
+                                strBuilder.Append(";");
+                            }
+                        }
+                        strBuilder.AppendLine();
+                    }
+                    File.WriteAllText(savepath, strBuilder.ToString(), Encoding.GetEncoding(1251));
+                    MessageBox.Show("Файл успешно сохранен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Файл не сохранен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
