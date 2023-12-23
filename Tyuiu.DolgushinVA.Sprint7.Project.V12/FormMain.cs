@@ -24,7 +24,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         static string[,] matrix;
         static string[,] matrixSearch;
         static string[,] matrixSort;
+        static int sort = 0;
         static string[,] matrixFilter;
+        static int filter = 0;
         DataService ds = new DataService();
         private void buttonOpenFile_DVA_Click(object sender, EventArgs e)
         {
@@ -39,7 +41,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                     rows = matrix.GetLength(0);
                     columns = matrix.GetLength(1);
                     dataGridViewOpenDataBase_DVA.RowCount = rows + 1;
-                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 1;
+                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 10;
 
                     for (int i = 0; i < rows; i++)
                     {
@@ -116,16 +118,54 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         {
             if (dataGridViewOpenDataBase_DVA.RowCount != 0)
             {
-                int del = 0;
-                var result = MessageBox.Show($"{"Удалить данную строку?\rЕё невозможно будет восстановить"}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                int count = -1;
+                int delete = 0;
+                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                 {
-                    del = 1;
+                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                    {
+                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
+                        {
+                            count = j;
+                            break;
+                        }
+                    }
+                    if (count > -1)
+                    {
+                        delete++;
+                    }
                 }
-                if (del == 1)
+                if (count > -1)
                 {
-                    int a = dataGridViewOpenDataBase_DVA.CurrentCell.RowIndex;
-                    dataGridViewOpenDataBase_DVA.Rows.RemoveAt(a);
+                    var result = MessageBox.Show($"{"Удалить данную строку?\rЕе невозможно будет восстановить"}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        int k = -1;
+                        for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                        {
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                            {
+                                k = i;
+                                break;
+                            }
+                            if (k > -1)
+                            {
+                                break;
+                            }
+                        }
+                        for (int r = 0; r < delete; r++) dataGridViewOpenDataBase_DVA.Rows.Remove(dataGridViewOpenDataBase_DVA.Rows[k]);
+                        for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                        {
+                            for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                            {
+                                dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы не выбрали строку для удаления", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -154,70 +194,16 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         }
         private void textBoxSearch_DVA_KeyUp(object sender, KeyEventArgs e)
         {
-            for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
-            {
-                for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
-                {
-                    dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
-                }
-            }
             if (e.KeyCode == Keys.Enter)
             {
-                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                for (int i = 0; i < matrixSearch.GetUpperBound(0); i++)
                 {
-                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                    for (int j = 0; j < matrixSearch.GetUpperBound(1); j++)
                     {
-                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value != null)
+                        if (matrixSearch[i, j] != null)
                         {
-                            string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value.ToString().ToLower();
-                            if (element.Contains(textBoxSearch_DVA.Text.ToLower()))
-                            {
-                                dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = true;
-                            }
-                        }
-                    }
-                }
-                int search = 0;
-                for (int r = 0; r < dataGridViewOpenDataBase_DVA.RowCount - 1; r++)
-                {
-                    for (int c = 0; c < dataGridViewOpenDataBase_DVA.ColumnCount - 1; c++)
-                    {
-                        if (dataGridViewOpenDataBase_DVA.Rows[r].Cells[c].Selected == true)
-                        {
-                            search += 1;
-                        }
-                    }
-                }
-                if (search == 0)
-                {
-                    for (int r = 0; r < dataGridViewOpenDataBase_DVA.RowCount - 1; r++)
-                    {
-                        for (int c = 0; c < dataGridViewOpenDataBase_DVA.ColumnCount - 1; c++)
-                        {
-                            dataGridViewOpenDataBase_DVA.Rows[r].Visible = true;
-                        }
-                    }
-                }
-                else
-                {
-                    int clear = 0;
-                    for (int r = 1; r < dataGridViewOpenDataBase_DVA.RowCount - 1; r++)
-                    {
-                        for (int c = 0; c < dataGridViewOpenDataBase_DVA.ColumnCount - 1; c++)
-                        {
-                            if (dataGridViewOpenDataBase_DVA.Rows[r].Cells[c].Selected == true)
-                            {
-                                clear += 1;
-                            }
-                        }
-                        if (clear == 0)
-                        {
-                            dataGridViewOpenDataBase_DVA.Rows[r].Visible = false;
-                        }
-                        else
-                        {
-                            dataGridViewOpenDataBase_DVA.Rows[r].Visible = true;
-                            clear = 0;
+                            string elmnt = matrixSearch[i, j].ToLower();
+                            if (elmnt.Contains(textBoxSearch_DVA.Text.ToLower())) dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = true;
                         }
                     }
                 }
@@ -235,6 +221,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                         matrixSort[i, j] = Convert.ToString(dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value);
                     }
                 }
+                sort++;
             }
             else
             {
@@ -243,63 +230,98 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         }
         private void comboBoxSort_DVA_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxSort_DVA.SelectedItem != null && comboBoxSort_DVA.SelectedItem.ToString() != "Изначальное состояние")
+            if (comboBoxSort_DVA.SelectedItem != null)
             {
                 int columnIndex = -1;
-                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount; i++)
+                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                 {
-                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount; j++)
+                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
                     {
-                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected)
+                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value != null)
                         {
-                            columnIndex = j;
-                            break;
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
+                            {
+                                columnIndex = j;
+                                break;
+                            }
                         }
                     }
-
                     if (columnIndex > -1)
                     {
                         break;
                     }
                 }
-
-                if (columnIndex > -1)
+                for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                {
+                    string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value.ToString();
+                    if (element.Contains(","))
+                    {
+                        element.Replace(",", ".");
+                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value = Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value.ToString());
+                    }
+                    else
+                    {
+                        int cellValue;
+                        if (int.TryParse(dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value.ToString(), out cellValue))
+                        {
+                            dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value = Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value.ToString());
+                        }
+                    }
+                }
+                if (dataGridViewOpenDataBase_DVA.RowCount != 0)
                 {
                     DataGridViewRow row = dataGridViewOpenDataBase_DVA.Rows[0];
-                    dataGridViewOpenDataBase_DVA.Rows.Remove(row);
+                    dataGridViewOpenDataBase_DVA.Rows.Remove(dataGridViewOpenDataBase_DVA.Rows[0]);
                     DataGridViewColumn column = dataGridViewOpenDataBase_DVA.Columns[columnIndex];
                     string selectedItem = comboBoxSort_DVA.SelectedItem.ToString();
-
                     if (selectedItem == "По возрастанию")
                     {
                         dataGridViewOpenDataBase_DVA.Sort(column, ListSortDirection.Ascending);
-                        dataGridViewOpenDataBase_DVA.Rows.Insert(0, row);
-
-                        for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount ; i++)
-                        {
-                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[columnIndex].Value == null)
-                            {
-                                dataGridViewOpenDataBase_DVA.Rows[i].Visible = false;
-                            }
-                        }
                     }
-
                     if (selectedItem == "По убыванию")
                     {
                         dataGridViewOpenDataBase_DVA.Sort(column, ListSortDirection.Descending);
-                        dataGridViewOpenDataBase_DVA.Rows.Insert(0, row);
+                    }
+                    dataGridViewOpenDataBase_DVA.Rows.Insert(0, row);
+                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                        {
+                            dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
+                        }
+                    }
+                    textBoxQuantity_DVA.Text = "";
+                    textBoxSum_DVA.Text = "";
+                    textBoxMiddleValue_DVA.Text = "";
+                    textBoxMinValue_DVA.Text = "";
+                    textBoxMaxValue_DVA.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void buttonClearSort_DVA_Click(object sender, EventArgs e)
+        {
+            if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (sort != 0))
+            {
+                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                {
+                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                    {
+                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value = matrixSort[i, j];
+                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
                     }
                 }
             }
+            else if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (sort == 0))
+            {
+                MessageBox.Show("Сортировка ещё не была применена", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
-                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount; i++)
-                {
-                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount; j++)
-                    {
-                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value = matrixSort[i, j];
-                    }
-                }
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void textBoxFilter_DVA_KeyDown(object sender, KeyEventArgs e)
@@ -314,6 +336,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                         matrixFilter[i, j] = Convert.ToString(dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value);
                     }
                 }
+                filter++;
             }
             else
             {
@@ -324,7 +347,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         {
             if (e.KeyCode == Keys.Enter)
             {
-                int filter = 0;
+                int count = -1;
                 for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                 {
                     for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
@@ -333,14 +356,14 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                         {
                             if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
                             {
-                                filter = j;
+                                count = j;
                                 break;
                             }
                         }
-                        if (filter > 0)
+                        if (count > -1)
                         {
                             break;
-                        }  
+                        }
                     }
                 }
                 for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
@@ -350,26 +373,19 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                         dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
                     }
                 }
-                if (filter > 0)
+                if (count > -1)
                 {
-                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount; i++)
                     {
-                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Value != null)
+                        if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value != null)
                         {
-                            string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Value.ToString().ToLower();
-                            if (element.StartsWith(textBoxFilter_DVA.Text.ToLower()))
-                            {
-                                dataGridViewOpenDataBase_DVA.Rows[i].Cells[filter].Selected = true;
-                            }
+                            string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString().ToLower();
+                            if (element.StartsWith(textBoxFilter_DVA.Text.ToLower())) dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected = true;
                         }
                     }
                     for (int r = 1; r < dataGridViewOpenDataBase_DVA.RowCount - 1; r++)
                     {
-                        if (dataGridViewOpenDataBase_DVA.Rows[r].Cells[filter].Selected == true)
-                        {
-                            dataGridViewOpenDataBase_DVA.Rows[r].Visible = true;
-                        }
-                        else
+                        if (dataGridViewOpenDataBase_DVA.Rows[r].Cells[count].Selected != true)
                         {
                             dataGridViewOpenDataBase_DVA.Rows[r].Visible = false;
                         }
@@ -381,6 +397,11 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                             dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
                         }
                     }
+                    textBoxQuantity_DVA.Text = "";
+                    textBoxSum_DVA.Text = "";
+                    textBoxMiddleValue_DVA.Text = "";
+                    textBoxMinValue_DVA.Text = "";
+                    textBoxMaxValue_DVA.Text = "";
                 }
                 else
                 {
@@ -388,23 +409,391 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 }
             }
         }
-        private void toolStripMenuItemAbout_DVA_Click(object sender, EventArgs e)
+        private void buttonClearFilter_DVA_Click(object sender, EventArgs e)
         {
-            FormAbout formAbout = new FormAbout();
-            formAbout.ShowDialog();
+            if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (filter != 0))
+            {
+                dataGridViewOpenDataBase_DVA.Rows.Clear();
+                dataGridViewOpenDataBase_DVA.Columns.Clear();
+                dataGridViewOpenDataBase_DVA.RowCount = matrixFilter.GetUpperBound(0) + 1;
+                dataGridViewOpenDataBase_DVA.ColumnCount = matrixFilter.GetUpperBound(1) + 1;
+                textBoxMaxValue_DVA.Text = Convert.ToString(matrixFilter.GetUpperBound(0) + 1);
+                textBoxMinValue_DVA.Text = Convert.ToString(matrixFilter.GetUpperBound(1) + 1);
+                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                {
+                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                    {
+                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value = matrixFilter[i, j];
+                    }
+                }
+                dataGridViewOpenDataBase_DVA.AutoResizeColumns();
+            }
+            else if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (filter == 0))
+            {
+                MessageBox.Show("Ещё не были применены фильтры", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private void ToolStripMenuItemCharts_DVA_Click(object sender, EventArgs e)
+        private void textBoxQuantity_DVA_KeyUp(object sender, KeyEventArgs e)
         {
-            this.Hide();
-            FormCharts formCharts = new FormCharts();
-            formCharts.Show();
-
+            if (dataGridViewOpenDataBase_DVA.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int count = -1;
+                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value != null)
+                            {
+                                if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
+                                {
+                                    count = j;
+                                    break;
+                                }
+                            }
+                            if (count > -1) break;
+                        }
+                    }
+                    int quantity = 0;
+                    for (int r = 0; r < dataGridViewOpenDataBase_DVA.RowCount - 1; r++)
+                    {
+                        if (dataGridViewOpenDataBase_DVA.Rows[r].Cells[count].Selected == true) quantity++;
+                    }
+                    textBoxQuantity_DVA.Text = Convert.ToString(quantity);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private void ToolStripMenuItemGuide_DVA_Click(object sender, EventArgs e)
+        private void textBoxSum_DVA_KeyUp(object sender, KeyEventArgs e)
         {
-            this.Hide();
-            FormGuide formGuide = new FormGuide();
-            formGuide.ShowDialog();
+            if (dataGridViewOpenDataBase_DVA.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int count = -1;
+                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
+                            {
+                                count = j;
+                                break;
+                            }
+                        }
+                        if (count > -1)
+                        {
+                            break;
+                        }
+                    }
+                    if (count > -1)
+                    {
+                        if (dataGridViewOpenDataBase_DVA.Rows[0].Cells[count].Selected != true)
+                        {
+                            double sum = 0;
+                            for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                            {
+                                if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                                {
+                                    string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString();
+                                    if (element.Contains(","))
+                                    {
+                                        element.Replace(",", ".");
+                                        sum += Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString());
+                                    }
+                                    else
+                                    {
+                                        int cellValue;
+                                        if (int.TryParse(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString(), out cellValue))
+                                        {
+                                            sum += Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString());
+                                        }
+                                    }
+                                }
+                            }
+                            if (sum != 0)
+                            {
+                                textBoxSum_DVA.Text = Convert.ToString(sum);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxSum_DVA.Text = "";
+                                textBoxMiddleValue_DVA.Text = "";
+                                textBoxMinValue_DVA.Text = "";
+                                textBoxMaxValue_DVA.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxSum_DVA.Text = "";
+                            textBoxMiddleValue_DVA.Text = "";
+                            textBoxMinValue_DVA.Text = "";
+                            textBoxMaxValue_DVA.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void textBoxMinValue_DVA_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewOpenDataBase_DVA.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int count = -1;
+                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
+                            {
+                                count = j;
+                                break;
+                            }
+                        }
+                        if (count > -1)
+                        {
+                            break;
+                        }
+                    }
+                    if (count > -1)
+                    {
+                        if (dataGridViewOpenDataBase_DVA.Rows[0].Cells[count].Selected != true)
+                        {
+                            double min = 9999999;
+                            for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                            {
+                                if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                                {
+                                    string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString();
+                                    if (element.Contains(","))
+                                    {
+                                        element.Replace(",", ".");
+                                        min = Math.Min(Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString()), min);
+                                    }
+                                    else
+                                    {
+                                        int cellValue;
+                                        if (int.TryParse(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString(), out cellValue))
+                                        {
+                                            min = Math.Min(Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString()), min);
+                                        }
+                                    }
+                                }
+                            }
+                            if (min != 9999999)
+                            {
+                                textBoxMinValue_DVA.Text = Convert.ToString(min);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxMinValue_DVA.Text = "";
+                                textBoxSum_DVA.Text = "";
+                                textBoxMiddleValue_DVA.Text = "";
+                                textBoxMaxValue_DVA.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxMinValue_DVA.Text = "";
+                            textBoxSum_DVA.Text = "";
+                            textBoxMiddleValue_DVA.Text = "";
+                            textBoxMaxValue_DVA.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void textBoxMiddleValue_DVA_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewOpenDataBase_DVA.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int count = -1;
+                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
+                            {
+                                count = j;
+                                break;
+                            }
+                        }
+                        if (count > -1)
+                        {
+                            break;
+                        }
+                    }
+                    if (count > -1)
+                    {
+                        if (dataGridViewOpenDataBase_DVA.Rows[0].Cells[count].Selected != true)
+                        {
+                            double midvalue = 0;
+                            int k = 0;
+                            for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                            {
+                                if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                                {
+                                    string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString();
+                                    if (element.Contains(","))
+                                    {
+                                        element.Replace(",", ".");
+                                        midvalue += Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString());
+                                        k++;
+                                    }
+                                    else
+                                    {
+                                        int cellValue;
+                                        if (int.TryParse(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString(), out cellValue))
+                                        {
+                                            midvalue += Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString());
+                                            k++;
+                                        }
+                                    }
+                                }
+                            }
+                            if (midvalue != 0)
+                            {
+                                textBoxMiddleValue_DVA.Text = Convert.ToString(midvalue / k);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxMiddleValue_DVA.Text = "";
+                                textBoxSum_DVA.Text = "";
+                                textBoxMinValue_DVA.Text = "";
+                                textBoxMaxValue_DVA.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxMiddleValue_DVA.Text = "";
+                            textBoxSum_DVA.Text = "";
+                            textBoxMinValue_DVA.Text = "";
+                            textBoxMaxValue_DVA.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void textBoxMaxValue_DVA_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewOpenDataBase_DVA.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int count = -1;
+                    for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected == true)
+                            {
+                                count = j;
+                                break;
+                            }
+                        }
+                        if (count > -1)
+                        {
+                            break;
+                        }
+                    }
+                    if (count > -1)
+                    {
+                        if (dataGridViewOpenDataBase_DVA.Rows[0].Cells[count].Selected != true)
+                        {
+                            double max = -9999999;
+                            for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                            {
+                                if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                                {
+                                    string element = dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString();
+                                    if (element.Contains(","))
+                                    {
+                                        element.Replace(",", ".");
+                                        max = Math.Max(Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString()), max);
+                                    }
+                                    else
+                                    {
+                                        int cellValue;
+                                        if (int.TryParse(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString(), out cellValue))
+                                        {
+                                            max = Math.Max(Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value.ToString()), max);
+                                        }
+                                    }
+                                }
+                            }
+                            if (max != -9999999)
+                            {
+                                textBoxMaxValue_DVA.Text = Convert.ToString(max);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxMaxValue_DVA.Text = "";
+                                textBoxSum_DVA.Text = "";
+                                textBoxMiddleValue_DVA.Text = "";
+                                textBoxMinValue_DVA.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxMaxValue_DVA.Text = "";
+                            textBoxSum_DVA.Text = "";
+                            textBoxMiddleValue_DVA.Text = "";
+                            textBoxMinValue_DVA.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void ToolStripMenuItemOpenFile_DVA_Click(object sender, EventArgs e)
         {
@@ -441,7 +830,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 MessageBox.Show("Произошла ошибка при загрузке файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void ToolStripMenuItemSaveFile_URI_Click(object sender, EventArgs e)
+        private void ToolStripMenuItemSaveFile_DVA_Click(object sender, EventArgs e)
         {
             try
             {
@@ -478,6 +867,24 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             {
                 MessageBox.Show("Файл не сохранен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void toolStripMenuItemAbout_DVA_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
+        }
+        private void ToolStripMenuItemCharts_DVA_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormCharts formCharts = new FormCharts();
+            formCharts.Show();
+
+        }
+        private void ToolStripMenuItemGuide_DVA_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormGuide formGuide = new FormGuide();
+            formGuide.ShowDialog();
         }
     }
 }

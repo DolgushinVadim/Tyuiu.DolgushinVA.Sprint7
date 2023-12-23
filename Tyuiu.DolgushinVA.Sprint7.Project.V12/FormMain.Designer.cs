@@ -34,6 +34,10 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelLeftM_DVA = new System.Windows.Forms.Panel();
             this.panelRightM_DVA = new System.Windows.Forms.Panel();
             this.panelDownM_DVA = new System.Windows.Forms.Panel();
+            this.openFileDialog_DVA = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
+            this.toolTipAddRow_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipDeleteRow_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.panelMain_DVA = new System.Windows.Forms.Panel();
             this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
             this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
@@ -65,10 +69,10 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.графикиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.мануалToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog_DVA = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
-            this.toolTipAdd_DVA = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTipDelete_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonClearSort = new System.Windows.Forms.Button();
+            this.buttonClearFilter = new System.Windows.Forms.Button();
+            this.toolTipOpenFile_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSaveFile_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.panelMain_DVA.SuspendLayout();
             this.groupBoxWorkwithData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).BeginInit();
@@ -78,7 +82,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             // panelLeftM_DVA
             // 
-            this.panelLeftM_DVA.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelLeftM_DVA.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panelLeftM_DVA.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeftM_DVA.Location = new System.Drawing.Point(0, 0);
             this.panelLeftM_DVA.Name = "panelLeftM_DVA";
@@ -87,7 +91,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             // panelRightM_DVA
             // 
-            this.panelRightM_DVA.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelRightM_DVA.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panelRightM_DVA.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRightM_DVA.Location = new System.Drawing.Point(1332, 0);
             this.panelRightM_DVA.Name = "panelRightM_DVA";
@@ -96,16 +100,31 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             // panelDownM_DVA
             // 
-            this.panelDownM_DVA.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelDownM_DVA.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panelDownM_DVA.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelDownM_DVA.Location = new System.Drawing.Point(25, 632);
             this.panelDownM_DVA.Name = "panelDownM_DVA";
             this.panelDownM_DVA.Size = new System.Drawing.Size(1307, 25);
             this.panelDownM_DVA.TabIndex = 2;
             // 
+            // openFileDialog_DVA
+            // 
+            this.openFileDialog_DVA.FileName = "openFileDialog_DVA";
+            // 
+            // toolTipAddRow_DVA
+            // 
+            this.toolTipAddRow_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipAddRow_DVA.ToolTipTitle = "Добавить строку";
+            // 
+            // toolTipDeleteRow_DVA
+            // 
+            this.toolTipDeleteRow_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipDeleteRow_DVA.ToolTipTitle = "Удалить строку";
+            // 
             // panelMain_DVA
             // 
             this.panelMain_DVA.BackColor = System.Drawing.SystemColors.Control;
+            this.panelMain_DVA.BackgroundImage = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.background;
             this.panelMain_DVA.Controls.Add(this.buttonSaveFile_DVA);
             this.panelMain_DVA.Controls.Add(this.buttonOpenFile_DVA);
             this.panelMain_DVA.Controls.Add(this.groupBoxWorkwithData);
@@ -130,6 +149,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonSaveFile_DVA.Name = "buttonSaveFile_DVA";
             this.buttonSaveFile_DVA.Size = new System.Drawing.Size(174, 65);
             this.buttonSaveFile_DVA.TabIndex = 11;
+            this.toolTipSaveFile_DVA.SetToolTip(this.buttonSaveFile_DVA, "Сохранить базу данных по выбранному пути");
             this.buttonSaveFile_DVA.UseVisualStyleBackColor = true;
             this.buttonSaveFile_DVA.Click += new System.EventHandler(this.buttonSaveFile_DVA_Click);
             // 
@@ -141,6 +161,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonOpenFile_DVA.Name = "buttonOpenFile_DVA";
             this.buttonOpenFile_DVA.Size = new System.Drawing.Size(174, 65);
             this.buttonOpenFile_DVA.TabIndex = 10;
+            this.toolTipOpenFile_DVA.SetToolTip(this.buttonOpenFile_DVA, "Открыть выбранную в проводнике базу данных");
             this.buttonOpenFile_DVA.UseVisualStyleBackColor = true;
             this.buttonOpenFile_DVA.Click += new System.EventHandler(this.buttonOpenFile_DVA_Click);
             // 
@@ -148,7 +169,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.groupBoxWorkwithData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxWorkwithData.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBoxWorkwithData.BackColor = System.Drawing.SystemColors.Highlight;
+            this.groupBoxWorkwithData.Controls.Add(this.buttonClearFilter);
+            this.groupBoxWorkwithData.Controls.Add(this.buttonClearSort);
             this.groupBoxWorkwithData.Controls.Add(this.textBoxFilter_DVA);
             this.groupBoxWorkwithData.Controls.Add(this.comboBoxSort_DVA);
             this.groupBoxWorkwithData.Controls.Add(this.labelFilter_DVA);
@@ -166,7 +189,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxFilter_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFilter_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxFilter_DVA.Location = new System.Drawing.Point(10, 176);
+            this.textBoxFilter_DVA.Location = new System.Drawing.Point(10, 167);
             this.textBoxFilter_DVA.Name = "textBoxFilter_DVA";
             this.textBoxFilter_DVA.Size = new System.Drawing.Size(230, 30);
             this.textBoxFilter_DVA.TabIndex = 4;
@@ -180,10 +203,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.comboBoxSort_DVA.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxSort_DVA.FormattingEnabled = true;
             this.comboBoxSort_DVA.Items.AddRange(new object[] {
-            "Изначальное состояние",
             "По возрастанию",
             "По убыванию"});
-            this.comboBoxSort_DVA.Location = new System.Drawing.Point(11, 82);
+            this.comboBoxSort_DVA.Location = new System.Drawing.Point(10, 63);
             this.comboBoxSort_DVA.Name = "comboBoxSort_DVA";
             this.comboBoxSort_DVA.Size = new System.Drawing.Size(229, 31);
             this.comboBoxSort_DVA.TabIndex = 2;
@@ -196,7 +218,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFilter_DVA.AutoSize = true;
             this.labelFilter_DVA.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelFilter_DVA.Location = new System.Drawing.Point(6, 150);
+            this.labelFilter_DVA.Location = new System.Drawing.Point(6, 141);
             this.labelFilter_DVA.Name = "labelFilter_DVA";
             this.labelFilter_DVA.Size = new System.Drawing.Size(107, 23);
             this.labelFilter_DVA.TabIndex = 1;
@@ -208,7 +230,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSort_DVA.AutoSize = true;
             this.labelSort_DVA.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelSort_DVA.Location = new System.Drawing.Point(6, 54);
+            this.labelSort_DVA.Location = new System.Drawing.Point(6, 37);
             this.labelSort_DVA.Name = "labelSort_DVA";
             this.labelSort_DVA.Size = new System.Drawing.Size(105, 23);
             this.labelSort_DVA.TabIndex = 0;
@@ -222,6 +244,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonDeleteRow_DVA.Name = "buttonDeleteRow_DVA";
             this.buttonDeleteRow_DVA.Size = new System.Drawing.Size(174, 65);
             this.buttonDeleteRow_DVA.TabIndex = 7;
+            this.toolTipDeleteRow_DVA.SetToolTip(this.buttonDeleteRow_DVA, "Удалить строку из файла");
             this.buttonDeleteRow_DVA.UseVisualStyleBackColor = true;
             this.buttonDeleteRow_DVA.Click += new System.EventHandler(this.buttonDeleteRow_DVA_Click);
             // 
@@ -233,6 +256,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.buttonAddRow_DVA.Name = "buttonAddRow_DVA";
             this.buttonAddRow_DVA.Size = new System.Drawing.Size(174, 65);
             this.buttonAddRow_DVA.TabIndex = 6;
+            this.toolTipAddRow_DVA.SetToolTip(this.buttonAddRow_DVA, "Добавить строку в файл");
             this.buttonAddRow_DVA.UseVisualStyleBackColor = true;
             this.buttonAddRow_DVA.Click += new System.EventHandler(this.buttonAddRow_DVA_Click);
             // 
@@ -240,7 +264,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.labelSearch_DVA.AutoSize = true;
             this.labelSearch_DVA.Font = new System.Drawing.Font("Segoe UI Black", 11F, System.Drawing.FontStyle.Bold);
-            this.labelSearch_DVA.Location = new System.Drawing.Point(7, 35);
+            this.labelSearch_DVA.Location = new System.Drawing.Point(3, 37);
             this.labelSearch_DVA.Name = "labelSearch_DVA";
             this.labelSearch_DVA.Size = new System.Drawing.Size(71, 25);
             this.labelSearch_DVA.TabIndex = 5;
@@ -277,7 +301,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.groupBoxStatistic_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxStatistic_DVA.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBoxStatistic_DVA.BackColor = System.Drawing.SystemColors.Highlight;
             this.groupBoxStatistic_DVA.Controls.Add(this.labelMaxValue_DVA);
             this.groupBoxStatistic_DVA.Controls.Add(this.labelMiddleValue_DVA);
             this.groupBoxStatistic_DVA.Controls.Add(this.labelMinValue_DVA);
@@ -364,6 +388,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxMaxValue_DVA.Name = "textBoxMaxValue_DVA";
             this.textBoxMaxValue_DVA.Size = new System.Drawing.Size(208, 30);
             this.textBoxMaxValue_DVA.TabIndex = 4;
+            this.textBoxMaxValue_DVA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxMaxValue_DVA_KeyUp);
             // 
             // textBoxMiddleValue_DVA
             // 
@@ -373,6 +398,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxMiddleValue_DVA.Name = "textBoxMiddleValue_DVA";
             this.textBoxMiddleValue_DVA.Size = new System.Drawing.Size(172, 30);
             this.textBoxMiddleValue_DVA.TabIndex = 3;
+            this.textBoxMiddleValue_DVA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxMiddleValue_DVA_KeyUp);
             // 
             // textBoxMinValue_DVA
             // 
@@ -382,6 +408,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxMinValue_DVA.Name = "textBoxMinValue_DVA";
             this.textBoxMinValue_DVA.Size = new System.Drawing.Size(203, 30);
             this.textBoxMinValue_DVA.TabIndex = 2;
+            this.textBoxMinValue_DVA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxMinValue_DVA_KeyUp);
             // 
             // textBoxSum_DVA
             // 
@@ -391,6 +418,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxSum_DVA.Name = "textBoxSum_DVA";
             this.textBoxSum_DVA.Size = new System.Drawing.Size(115, 30);
             this.textBoxSum_DVA.TabIndex = 1;
+            this.textBoxSum_DVA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSum_DVA_KeyUp);
             // 
             // textBoxQuantity_DVA
             // 
@@ -400,10 +428,11 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.textBoxQuantity_DVA.Name = "textBoxQuantity_DVA";
             this.textBoxQuantity_DVA.Size = new System.Drawing.Size(121, 30);
             this.textBoxQuantity_DVA.TabIndex = 0;
+            this.textBoxQuantity_DVA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxQuantity_DVA_KeyUp);
             // 
             // menuStrip_DVA
             // 
-            this.menuStrip_DVA.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip_DVA.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.menuStrip_DVA.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.menuStrip_DVA.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip_DVA.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -438,7 +467,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
-            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemSaveFile_URI_Click);
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemSaveFile_DVA_Click);
             // 
             // графикиToolStripMenuItem
             // 
@@ -461,9 +490,39 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItemAbout_DVA_Click);
             // 
-            // openFileDialog_DVA
+            // buttonClearSort
             // 
-            this.openFileDialog_DVA.FileName = "openFileDialog_DVA";
+            this.buttonClearSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClearSort.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonClearSort.Location = new System.Drawing.Point(10, 100);
+            this.buttonClearSort.Name = "buttonClearSort";
+            this.buttonClearSort.Size = new System.Drawing.Size(229, 29);
+            this.buttonClearSort.TabIndex = 5;
+            this.buttonClearSort.Text = "Отменить сортировку";
+            this.buttonClearSort.UseVisualStyleBackColor = true;
+            this.buttonClearSort.Click += new System.EventHandler(this.buttonClearSort_DVA_Click);
+            // 
+            // buttonClearFilter
+            // 
+            this.buttonClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClearFilter.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonClearFilter.Location = new System.Drawing.Point(10, 203);
+            this.buttonClearFilter.Name = "buttonClearFilter";
+            this.buttonClearFilter.Size = new System.Drawing.Size(229, 29);
+            this.buttonClearFilter.TabIndex = 6;
+            this.buttonClearFilter.Text = "Отменить фильтрацию";
+            this.buttonClearFilter.UseVisualStyleBackColor = true;
+            this.buttonClearFilter.Click += new System.EventHandler(this.buttonClearFilter_DVA_Click);
+            // 
+            // toolTipOpenFile_DVA
+            // 
+            this.toolTipOpenFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipOpenFile_DVA.ToolTipTitle = "Открыть файл";
+            // 
+            // toolTipSaveFile_DVA
+            // 
+            this.toolTipSaveFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipSaveFile_DVA.ToolTipTitle = "Сохранить файл";
             // 
             // FormMain
             // 
@@ -521,8 +580,8 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         private System.Windows.Forms.ToolStripMenuItem графикиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem мануалToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.ToolTip toolTipAdd_DVA;
-        private System.Windows.Forms.ToolTip toolTipDelete_DVA;
+        private System.Windows.Forms.ToolTip toolTipAddRow_DVA;
+        private System.Windows.Forms.ToolTip toolTipDeleteRow_DVA;
         private System.Windows.Forms.GroupBox groupBoxWorkwithData;
         private System.Windows.Forms.Label labelFilter_DVA;
         private System.Windows.Forms.Label labelSort_DVA;
@@ -532,6 +591,10 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         private System.Windows.Forms.Button buttonSaveFile_DVA;
         private System.Windows.Forms.Button buttonOpenFile_DVA;
         private System.Windows.Forms.TextBox textBoxFilter_DVA;
+        private System.Windows.Forms.Button buttonClearFilter;
+        private System.Windows.Forms.Button buttonClearSort;
+        private System.Windows.Forms.ToolTip toolTipSaveFile_DVA;
+        private System.Windows.Forms.ToolTip toolTipOpenFile_DVA;
     }
 }
 
