@@ -37,11 +37,11 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
 
                 if (openFile != "")
                 {
-                    matrix = ds.LoadFromDataFile(openFile);
+                    matrix = ds.LoadDataBase(openFile);
                     rows = matrix.GetLength(0);
                     columns = matrix.GetLength(1);
                     dataGridViewOpenDataBase_DVA.RowCount = rows + 1;
-                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 10;
+                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 5;
 
                     for (int i = 0; i < rows; i++)
                     {
@@ -202,8 +202,8 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                     {
                         if (matrixSearch[i, j] != null)
                         {
-                            string elmnt = matrixSearch[i, j].ToLower();
-                            if (elmnt.Contains(textBoxSearch_DVA.Text.ToLower())) dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = true;
+                            string element = matrixSearch[i, j].ToLower();
+                            if (element.Contains(textBoxSearch_DVA.Text.ToLower())) dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = true;
                         }
                     }
                 }
@@ -804,11 +804,11 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
 
                 if (openFile != "")
                 {
-                    matrix = ds.LoadFromDataFile(openFile);
+                    matrix = ds.LoadDataBase(openFile);
                     rows = matrix.GetLength(0);
                     columns = matrix.GetLength(1);
                     dataGridViewOpenDataBase_DVA.RowCount = rows + 1;
-                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 1;
+                    dataGridViewOpenDataBase_DVA.ColumnCount = columns + 5;
 
                     for (int i = 0; i < rows; i++)
                     {
@@ -882,7 +882,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         }
         private void ToolStripMenuItemGuide_DVA_Click(object sender, EventArgs e)
         {
-            this.Hide();
             FormGuide formGuide = new FormGuide();
             formGuide.ShowDialog();
         }

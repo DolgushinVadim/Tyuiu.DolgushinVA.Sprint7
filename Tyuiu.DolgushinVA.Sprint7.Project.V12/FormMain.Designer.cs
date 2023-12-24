@@ -38,10 +38,14 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
             this.toolTipAddRow_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDeleteRow_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipOpenFile_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSaveFile_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.panelMain_DVA = new System.Windows.Forms.Panel();
             this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
             this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
             this.groupBoxWorkwithData = new System.Windows.Forms.GroupBox();
+            this.buttonClearFilter = new System.Windows.Forms.Button();
+            this.buttonClearSort = new System.Windows.Forms.Button();
             this.textBoxFilter_DVA = new System.Windows.Forms.TextBox();
             this.comboBoxSort_DVA = new System.Windows.Forms.ComboBox();
             this.labelFilter_DVA = new System.Windows.Forms.Label();
@@ -69,10 +73,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.графикиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.мануалToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonClearSort = new System.Windows.Forms.Button();
-            this.buttonClearFilter = new System.Windows.Forms.Button();
-            this.toolTipOpenFile_DVA = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTipSaveFile_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.panelMain_DVA.SuspendLayout();
             this.groupBoxWorkwithData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOpenDataBase_DVA)).BeginInit();
@@ -120,6 +120,16 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // 
             this.toolTipDeleteRow_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipDeleteRow_DVA.ToolTipTitle = "Удалить строку";
+            // 
+            // toolTipOpenFile_DVA
+            // 
+            this.toolTipOpenFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipOpenFile_DVA.ToolTipTitle = "Открыть файл";
+            // 
+            // toolTipSaveFile_DVA
+            // 
+            this.toolTipSaveFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipSaveFile_DVA.ToolTipTitle = "Сохранить файл";
             // 
             // panelMain_DVA
             // 
@@ -183,6 +193,30 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.groupBoxWorkwithData.TabIndex = 9;
             this.groupBoxWorkwithData.TabStop = false;
             this.groupBoxWorkwithData.Text = "Работа с данными";
+            // 
+            // buttonClearFilter
+            // 
+            this.buttonClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClearFilter.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonClearFilter.Location = new System.Drawing.Point(10, 203);
+            this.buttonClearFilter.Name = "buttonClearFilter";
+            this.buttonClearFilter.Size = new System.Drawing.Size(229, 29);
+            this.buttonClearFilter.TabIndex = 6;
+            this.buttonClearFilter.Text = "Отменить фильтрацию";
+            this.buttonClearFilter.UseVisualStyleBackColor = true;
+            this.buttonClearFilter.Click += new System.EventHandler(this.buttonClearFilter_DVA_Click);
+            // 
+            // buttonClearSort
+            // 
+            this.buttonClearSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClearSort.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonClearSort.Location = new System.Drawing.Point(10, 100);
+            this.buttonClearSort.Name = "buttonClearSort";
+            this.buttonClearSort.Size = new System.Drawing.Size(229, 29);
+            this.buttonClearSort.TabIndex = 5;
+            this.buttonClearSort.Text = "Отменить сортировку";
+            this.buttonClearSort.UseVisualStyleBackColor = true;
+            this.buttonClearSort.Click += new System.EventHandler(this.buttonClearSort_DVA_Click);
             // 
             // textBoxFilter_DVA
             // 
@@ -489,40 +523,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(133, 27);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItemAbout_DVA_Click);
-            // 
-            // buttonClearSort
-            // 
-            this.buttonClearSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClearSort.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonClearSort.Location = new System.Drawing.Point(10, 100);
-            this.buttonClearSort.Name = "buttonClearSort";
-            this.buttonClearSort.Size = new System.Drawing.Size(229, 29);
-            this.buttonClearSort.TabIndex = 5;
-            this.buttonClearSort.Text = "Отменить сортировку";
-            this.buttonClearSort.UseVisualStyleBackColor = true;
-            this.buttonClearSort.Click += new System.EventHandler(this.buttonClearSort_DVA_Click);
-            // 
-            // buttonClearFilter
-            // 
-            this.buttonClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClearFilter.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonClearFilter.Location = new System.Drawing.Point(10, 203);
-            this.buttonClearFilter.Name = "buttonClearFilter";
-            this.buttonClearFilter.Size = new System.Drawing.Size(229, 29);
-            this.buttonClearFilter.TabIndex = 6;
-            this.buttonClearFilter.Text = "Отменить фильтрацию";
-            this.buttonClearFilter.UseVisualStyleBackColor = true;
-            this.buttonClearFilter.Click += new System.EventHandler(this.buttonClearFilter_DVA_Click);
-            // 
-            // toolTipOpenFile_DVA
-            // 
-            this.toolTipOpenFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipOpenFile_DVA.ToolTipTitle = "Открыть файл";
-            // 
-            // toolTipSaveFile_DVA
-            // 
-            this.toolTipSaveFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipSaveFile_DVA.ToolTipTitle = "Сохранить файл";
             // 
             // FormMain
             // 

@@ -16,5 +16,10 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         {
             InitializeComponent();
         }
+
+        private void buttonCloseGuide_DVA_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

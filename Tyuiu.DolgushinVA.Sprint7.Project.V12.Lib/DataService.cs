@@ -9,7 +9,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12.Lib
 {
     public class DataService
     {
-        public string[,] LoadFromDataFile(string path)
+        public string[,] LoadDataBase(string path)
         {
             string[] num = File.ReadAllLines(path, Encoding.GetEncoding(1251));
             int columns = num[0].Split(';').Length;

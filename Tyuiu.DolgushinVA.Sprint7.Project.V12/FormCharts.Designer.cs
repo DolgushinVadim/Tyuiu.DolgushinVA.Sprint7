@@ -37,8 +37,18 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelLeftC_DVA = new System.Windows.Forms.Panel();
             this.panelRightC_DVA = new System.Windows.Forms.Panel();
             this.panelDownC_DVA = new System.Windows.Forms.Panel();
+            this.openFileDialog_DVA = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
+            this.toolTipOpenFile_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSaveFile_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipAddChart_DVA = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipDeleteChart_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.panelCharts_DVA = new System.Windows.Forms.Panel();
             this.groupBoxActions_DVA = new System.Windows.Forms.GroupBox();
+            this.buttonDeleteChart_DVA = new System.Windows.Forms.Button();
+            this.buttonAddChart_DVA = new System.Windows.Forms.Button();
+            this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
+            this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
             this.chartFunction_DVA = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridViewOpenDataBase_DVA = new System.Windows.Forms.DataGridView();
             this.menuStrip_DVA = new System.Windows.Forms.MenuStrip();
@@ -48,16 +58,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.главнаяСтраницаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.руководствоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog_DVA = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog_DVA = new System.Windows.Forms.SaveFileDialog();
-            this.buttonDeleteChart_DVA = new System.Windows.Forms.Button();
-            this.buttonAddChart_DVA = new System.Windows.Forms.Button();
-            this.buttonSaveFile_DVA = new System.Windows.Forms.Button();
-            this.buttonOpenFile_DVA = new System.Windows.Forms.Button();
-            this.toolTipOpenFile_DVA = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTipSaveFile_DVA = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTipAddChart_DVA = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTipDeleteChart_DVA = new System.Windows.Forms.ToolTip(this.components);
             this.panelCharts_DVA.SuspendLayout();
             this.groupBoxActions_DVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartFunction_DVA)).BeginInit();
@@ -92,6 +92,30 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.panelDownC_DVA.Size = new System.Drawing.Size(1307, 25);
             this.panelDownC_DVA.TabIndex = 3;
             // 
+            // openFileDialog_DVA
+            // 
+            this.openFileDialog_DVA.FileName = "openFileDialog1";
+            // 
+            // toolTipOpenFile_DVA
+            // 
+            this.toolTipOpenFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipOpenFile_DVA.ToolTipTitle = "Открыть файл";
+            // 
+            // toolTipSaveFile_DVA
+            // 
+            this.toolTipSaveFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipSaveFile_DVA.ToolTipTitle = "Сохранить файл";
+            // 
+            // toolTipAddChart_DVA
+            // 
+            this.toolTipAddChart_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipAddChart_DVA.ToolTipTitle = "Построить график";
+            // 
+            // toolTipDeleteChart_DVA
+            // 
+            this.toolTipDeleteChart_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipDeleteChart_DVA.ToolTipTitle = "Очистить плоскость";
+            // 
             // panelCharts_DVA
             // 
             this.panelCharts_DVA.BackColor = System.Drawing.SystemColors.Control;
@@ -123,9 +147,58 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.groupBoxActions_DVA.TabStop = false;
             this.groupBoxActions_DVA.Text = "Работа с графиком";
             // 
+            // buttonDeleteChart_DVA
+            // 
+            this.buttonDeleteChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeleteChart_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.chart_curve_delete;
+            this.buttonDeleteChart_DVA.Location = new System.Drawing.Point(1097, 39);
+            this.buttonDeleteChart_DVA.Name = "buttonDeleteChart_DVA";
+            this.buttonDeleteChart_DVA.Size = new System.Drawing.Size(175, 85);
+            this.buttonDeleteChart_DVA.TabIndex = 3;
+            this.toolTipDeleteChart_DVA.SetToolTip(this.buttonDeleteChart_DVA, "Удалить график");
+            this.buttonDeleteChart_DVA.UseVisualStyleBackColor = true;
+            this.buttonDeleteChart_DVA.Click += new System.EventHandler(this.buttonDeleteChart_DVA_Click);
+            // 
+            // buttonAddChart_DVA
+            // 
+            this.buttonAddChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddChart_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.chart_curve_add;
+            this.buttonAddChart_DVA.Location = new System.Drawing.Point(879, 39);
+            this.buttonAddChart_DVA.Name = "buttonAddChart_DVA";
+            this.buttonAddChart_DVA.Size = new System.Drawing.Size(175, 85);
+            this.buttonAddChart_DVA.TabIndex = 2;
+            this.toolTipAddChart_DVA.SetToolTip(this.buttonAddChart_DVA, "Построить график по данным из выбранного столбца");
+            this.buttonAddChart_DVA.UseVisualStyleBackColor = true;
+            this.buttonAddChart_DVA.Click += new System.EventHandler(this.buttonAddChart_DVA_Click);
+            // 
+            // buttonSaveFile_DVA
+            // 
+            this.buttonSaveFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSaveFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.database_save;
+            this.buttonSaveFile_DVA.Location = new System.Drawing.Point(237, 39);
+            this.buttonSaveFile_DVA.Name = "buttonSaveFile_DVA";
+            this.buttonSaveFile_DVA.Size = new System.Drawing.Size(175, 85);
+            this.buttonSaveFile_DVA.TabIndex = 0;
+            this.toolTipSaveFile_DVA.SetToolTip(this.buttonSaveFile_DVA, "Сохранить базу данных по выбранному пути");
+            this.buttonSaveFile_DVA.UseVisualStyleBackColor = true;
+            this.buttonSaveFile_DVA.Click += new System.EventHandler(this.buttonSaveFile_DVA_Click);
+            // 
+            // buttonOpenFile_DVA
+            // 
+            this.buttonOpenFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonOpenFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.folder_database;
+            this.buttonOpenFile_DVA.Location = new System.Drawing.Point(19, 39);
+            this.buttonOpenFile_DVA.Name = "buttonOpenFile_DVA";
+            this.buttonOpenFile_DVA.Size = new System.Drawing.Size(175, 85);
+            this.buttonOpenFile_DVA.TabIndex = 1;
+            this.toolTipOpenFile_DVA.SetToolTip(this.buttonOpenFile_DVA, "Открыть выбранную в проводнике базу данных");
+            this.buttonOpenFile_DVA.UseVisualStyleBackColor = true;
+            this.buttonOpenFile_DVA.Click += new System.EventHandler(this.buttonOpenFile_DVA_Click);
+            // 
             // chartFunction_DVA
             // 
-            this.chartFunction_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chartFunction_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.Name = "ChartArea1";
             this.chartFunction_DVA.ChartAreas.Add(chartArea1);
@@ -186,14 +259,14 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemOpenFile_DVA_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(179, 28);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemSaveFile_DVA_Click);
             // 
@@ -217,78 +290,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(133, 27);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItemAbout_DVA_Click);
-            // 
-            // openFileDialog_DVA
-            // 
-            this.openFileDialog_DVA.FileName = "openFileDialog1";
-            // 
-            // buttonDeleteChart_DVA
-            // 
-            this.buttonDeleteChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeleteChart_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.chart_curve_delete;
-            this.buttonDeleteChart_DVA.Location = new System.Drawing.Point(1097, 39);
-            this.buttonDeleteChart_DVA.Name = "buttonDeleteChart_DVA";
-            this.buttonDeleteChart_DVA.Size = new System.Drawing.Size(175, 85);
-            this.buttonDeleteChart_DVA.TabIndex = 3;
-            this.toolTipDeleteChart_DVA.SetToolTip(this.buttonDeleteChart_DVA, "Удалить график");
-            this.buttonDeleteChart_DVA.UseVisualStyleBackColor = true;
-            this.buttonDeleteChart_DVA.Click += new System.EventHandler(this.buttonDeleteChart_DVA_Click);
-            // 
-            // buttonAddChart_DVA
-            // 
-            this.buttonAddChart_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddChart_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.chart_curve_add;
-            this.buttonAddChart_DVA.Location = new System.Drawing.Point(879, 39);
-            this.buttonAddChart_DVA.Name = "buttonAddChart_DVA";
-            this.buttonAddChart_DVA.Size = new System.Drawing.Size(175, 85);
-            this.buttonAddChart_DVA.TabIndex = 2;
-            this.toolTipAddChart_DVA.SetToolTip(this.buttonAddChart_DVA, "Построить график по данным из выбранного столбца");
-            this.buttonAddChart_DVA.UseVisualStyleBackColor = true;
-            this.buttonAddChart_DVA.Click += new System.EventHandler(this.buttonAddChart_DVA_Click);
-            // 
-            // buttonSaveFile_DVA
-            // 
-            this.buttonSaveFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonSaveFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.database_save;
-            this.buttonSaveFile_DVA.Location = new System.Drawing.Point(237, 39);
-            this.buttonSaveFile_DVA.Name = "buttonSaveFile_DVA";
-            this.buttonSaveFile_DVA.Size = new System.Drawing.Size(175, 85);
-            this.buttonSaveFile_DVA.TabIndex = 0;
-            this.toolTipSaveFile_DVA.SetToolTip(this.buttonSaveFile_DVA, "Сохранить базу данных по выбранному пути");
-            this.buttonSaveFile_DVA.UseVisualStyleBackColor = true;
-            this.buttonSaveFile_DVA.Click += new System.EventHandler(this.buttonSaveFile_DVA_Click);
-            // 
-            // buttonOpenFile_DVA
-            // 
-            this.buttonOpenFile_DVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonOpenFile_DVA.Image = global::Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties.Resources.folder_database;
-            this.buttonOpenFile_DVA.Location = new System.Drawing.Point(19, 39);
-            this.buttonOpenFile_DVA.Name = "buttonOpenFile_DVA";
-            this.buttonOpenFile_DVA.Size = new System.Drawing.Size(175, 85);
-            this.buttonOpenFile_DVA.TabIndex = 1;
-            this.toolTipOpenFile_DVA.SetToolTip(this.buttonOpenFile_DVA, "Открыть выбранную в проводнике базу данных");
-            this.buttonOpenFile_DVA.UseVisualStyleBackColor = true;
-            this.buttonOpenFile_DVA.Click += new System.EventHandler(this.buttonOpenFile_DVA_Click);
-            // 
-            // toolTipOpenFile_DVA
-            // 
-            this.toolTipOpenFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipOpenFile_DVA.ToolTipTitle = "Открыть файл";
-            // 
-            // toolTipSaveFile_DVA
-            // 
-            this.toolTipSaveFile_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipSaveFile_DVA.ToolTipTitle = "Сохранить файл";
-            // 
-            // toolTipAddChart_DVA
-            // 
-            this.toolTipAddChart_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipAddChart_DVA.ToolTipTitle = "Построить график";
-            // 
-            // toolTipDeleteChart_DVA
-            // 
-            this.toolTipDeleteChart_DVA.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipDeleteChart_DVA.ToolTipTitle = "Удалить график";
             // 
             // FormCharts
             // 

@@ -32,7 +32,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
 
                 if (openFile != "")
                 {
-                    matrix = ds.LoadFromDataFile(openFile);
+                    matrix = ds.LoadDataBase(openFile);
                     rows = matrix.GetLength(0);
                     columns = matrix.GetLength(1);
                     dataGridViewOpenDataBase_DVA.RowCount = rows + 1;
@@ -151,10 +151,11 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                             }
                             if (n == 0)
                             {
-                                this.chartFunction_DVA.ChartAreas[0].AxisX.Title = "ID";
+                                this.chartFunction_DVA.ChartAreas[0].AxisX.Title = "ID процессора";
                                 string name = Convert.ToString(dataGridViewOpenDataBase_DVA.Rows[0].Cells[count].Value);
                                 this.chartFunction_DVA.ChartAreas[0].AxisY.Title = name;
-                                int startValue = Convert.ToInt32(dataGridViewOpenDataBase_DVA.Rows[1].Cells[0].Value);
+                                int startValue = Convert.ToInt32(dataGridViewOpenDataBase_DVA.Rows[1].Cells[3].Value);
+                                startValue -= 7;
                                 for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                                 {
                                     this.chartFunction_DVA.Series[0].Points.AddXY(startValue, Convert.ToDouble(dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Value));
@@ -197,7 +198,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         }
         private void ToolStripMenuItemGuide_DVA_Click(object sender, EventArgs e)
         {
-            this.Hide();
             FormGuide formGuide = new FormGuide();
             formGuide.ShowDialog();
         }
@@ -210,7 +210,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
 
                 if (openFile != "")
                 {
-                    matrix = ds.LoadFromDataFile(openFile);
+                    matrix = ds.LoadDataBase(openFile);
                     rows = matrix.GetLength(0);
                     columns = matrix.GetLength(1);
                     dataGridViewOpenDataBase_DVA.RowCount = rows + 1;

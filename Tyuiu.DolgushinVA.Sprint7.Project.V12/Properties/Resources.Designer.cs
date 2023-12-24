@@ -73,6 +73,16 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backgroundinfo {
+            get {
+                object obj = ResourceManager.GetObject("backgroundinfo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chart_curve_add {
             get {
                 object obj = ResourceManager.GetObject("chart_curve_add", resourceCulture);

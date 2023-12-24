@@ -9,7 +9,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12.Test
     public class DataServiceTest
     {
         [TestMethod]
-        public void ValidLoadFromDataFile()
+        public void ValidLoadDataBase()
         {
             string path = @"C:\DataSprint7\BD_Personal_Computers.csv";
             FileInfo fileInfo = new FileInfo(path);
