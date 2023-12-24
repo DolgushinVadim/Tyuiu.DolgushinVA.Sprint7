@@ -151,7 +151,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                             }
                             if (n == 0)
                             {
-                                this.chartFunction_DVA.ChartAreas[0].AxisX.Title = "ID процессора";
+                                this.chartFunction_DVA.ChartAreas[0].AxisX.Title = "ID ЭВМ";
                                 string name = Convert.ToString(dataGridViewOpenDataBase_DVA.Rows[0].Cells[count].Value);
                                 this.chartFunction_DVA.ChartAreas[0].AxisY.Title = name;
                                 int startValue = Convert.ToInt32(dataGridViewOpenDataBase_DVA.Rows[1].Cells[3].Value);
