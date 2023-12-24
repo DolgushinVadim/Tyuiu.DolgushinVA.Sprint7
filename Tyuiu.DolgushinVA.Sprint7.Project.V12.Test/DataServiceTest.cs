@@ -11,7 +11,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12.Test
         [TestMethod]
         public void ValidLoadDataBase()
         {
-            string path = @"C:\DataSprint7\BD_Personal_Computers.csv";
+            string path = @"C:\DataSprint7\DB_Personal_Computers.csv";
             FileInfo fileInfo = new FileInfo(path);
             bool fileExists = fileInfo.Exists;
             Assert.AreEqual(true, fileExists);
