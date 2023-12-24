@@ -24,9 +24,8 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         static string[,] matrix;
         static string[,] matrixSearch;
         static string[,] matrixSort;
-        static int sort = 0;
         static string[,] matrixFilter;
-        static int filter = 0;
+        static int clear = 0;
         DataService ds = new DataService();
         private void buttonOpenFile_DVA_Click(object sender, EventArgs e)
         {
@@ -119,7 +118,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
             if (dataGridViewOpenDataBase_DVA.RowCount != 0)
             {
                 int count = -1;
-                int delete = 0;
                 for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                 {
                     for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
@@ -132,40 +130,58 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                     }
                     if (count > -1)
                     {
-                        delete++;
+                        break;
                     }
                 }
                 if (count > -1)
                 {
-                    var result = MessageBox.Show($"{"Удалить данную строку?\rЕе невозможно будет восстановить"}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes)
+                    if (dataGridViewOpenDataBase_DVA.Rows[0].Cells[count].Selected == true)
                     {
-                        int k = -1;
-                        for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                        MessageBox.Show("Первую строку нельзя удалить", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        var result = MessageBox.Show($"{"Удалить данную строку?\rЕе невозможно будет восстановить"}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
                         {
-                            if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                            int k = -1;
+                            int delete = 0;
+                            for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                             {
-                                k = i;
-                                break;
+                                if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                                {
+                                    k = i;
+                                    break;
+                                }
+                                if (k > -1)
+                                {
+                                    break;
+                                }
                             }
-                            if (k > -1)
+                            for (int i = 1; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
                             {
-                                break;
+                                if (dataGridViewOpenDataBase_DVA.Rows[i].Cells[count].Selected == true)
+                                {
+                                    delete++;
+                                }
                             }
-                        }
-                        for (int r = 0; r < delete; r++) dataGridViewOpenDataBase_DVA.Rows.Remove(dataGridViewOpenDataBase_DVA.Rows[k]);
-                        for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
-                        {
-                            for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                            for (int r = 0; r < delete; r++)
                             {
-                                dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
+                                dataGridViewOpenDataBase_DVA.Rows.Remove(dataGridViewOpenDataBase_DVA.Rows[k]);
+                            }
+                            for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
+                            {
+                                for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
+                                {
+                                    dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
+                                }
                             }
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Вы не выбрали строку для удаления", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Выберите строку, которую ходите удалить", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -221,7 +237,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                         matrixSort[i, j] = Convert.ToString(dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value);
                     }
                 }
-                sort++;
             }
             else
             {
@@ -302,28 +317,6 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 }
             }
         }
-        private void buttonClearSort_DVA_Click(object sender, EventArgs e)
-        {
-            if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (sort != 0))
-            {
-                for (int i = 0; i < dataGridViewOpenDataBase_DVA.RowCount - 1; i++)
-                {
-                    for (int j = 0; j < dataGridViewOpenDataBase_DVA.ColumnCount - 1; j++)
-                    {
-                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value = matrixSort[i, j];
-                        dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Selected = false;
-                    }
-                }
-            }
-            else if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (sort == 0))
-            {
-                MessageBox.Show("Сортировка ещё не была применена", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void textBoxFilter_DVA_KeyDown(object sender, KeyEventArgs e)
         {
             if (dataGridViewOpenDataBase_DVA.RowCount != 0)
@@ -336,7 +329,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                         matrixFilter[i, j] = Convert.ToString(dataGridViewOpenDataBase_DVA.Rows[i].Cells[j].Value);
                     }
                 }
-                filter++;
+                clear++;
             }
             else
             {
@@ -411,7 +404,7 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
         }
         private void buttonClearFilter_DVA_Click(object sender, EventArgs e)
         {
-            if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (filter != 0))
+            if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (clear != 0))
             {
                 dataGridViewOpenDataBase_DVA.Rows.Clear();
                 dataGridViewOpenDataBase_DVA.Columns.Clear();
@@ -428,9 +421,9 @@ namespace Tyuiu.DolgushinVA.Sprint7.Project.V12
                 }
                 dataGridViewOpenDataBase_DVA.AutoResizeColumns();
             }
-            else if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (filter == 0))
+            else if ((dataGridViewOpenDataBase_DVA.RowCount != 0) && (clear == 0))
             {
-                MessageBox.Show("Ещё не были применены фильтры", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Фильтрация ещё не была применена", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
